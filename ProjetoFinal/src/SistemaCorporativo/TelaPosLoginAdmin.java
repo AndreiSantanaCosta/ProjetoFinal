@@ -65,6 +65,12 @@ public class TelaPosLoginAdmin extends JFrame {
 		contentPane.add(btnSair);
 		
 		JButton btnPrestarContas = new JButton("Prestar Contas");
+		btnPrestarContas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new TelaPrestacaoDeContas().setVisible(true);
+				dispose();
+			}
+		});
 		btnPrestarContas.setBounds(133, 130, 163, 23);
 		contentPane.add(btnPrestarContas);
 		
