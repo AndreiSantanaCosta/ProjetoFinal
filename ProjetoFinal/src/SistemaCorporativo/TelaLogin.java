@@ -80,15 +80,23 @@ public class TelaLogin extends JFrame {
 
 		JButton btnLogin = new JButton("Logar");
 		btnLogin.addActionListener(new ActionListener() {
+			int contador = 0;
 			public void actionPerformed(ActionEvent e) {
-				int contador = 0;
 				if (txtLogin.getText().equals("admin") && txtSenha.getText().equals("admin")) {
 					new TelaPosLogin().setVisible(true);
 					dispose();
 				} else{
-					JOptionPane.showMessageDialog(null, "Login ou senha inválidos");
+					contador++;
+					if(contador >= 5) {
+						JOptionPane.showMessageDialog(null, "Ops! parece que voce está errando muito tente usar a opção 'Esqueci minha senha'");
+					}else {
+						JOptionPane.showMessageDialog(null, "Login ou senha inválidos");
+					}
 				}
 			}
+			
+			
+			
 		});
 		btnLogin.setBounds(117, 205, 89, 23);
 		contentPane.add(btnLogin);
