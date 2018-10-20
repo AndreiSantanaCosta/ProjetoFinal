@@ -55,46 +55,45 @@ public class TelaLoginMDI extends JFrame {
 		menuBar.setBorderPainted(false);
 		setJMenuBar(menuBar);
 		
-		JMenu mnLogin = new JMenu("Login");
+		JMenu mnAes = new JMenu("A\u00E7\u00F5es");
+		mnAes.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/icons 1/paste_plain.png")));
+		mnAes.setForeground(new Color(204, 204, 204));
+		menuBar.add(mnAes);
+		
+		JMenuItem mntmPrestarContas = new JMenuItem("Prestar Contas");
+		mntmPrestarContas.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/icons 1/book_open.png")));
+		mnAes.add(mntmPrestarContas);
+		
+		JMenuItem mntmNewMenuItem = new JMenuItem("Pedir Reembolso");
+		mntmNewMenuItem.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/icons 1/coins.png")));
+		mnAes.add(mntmNewMenuItem);
+		
+		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Analisar Solicitações");
+		mntmNewMenuItem_1.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/icons 1/magnifier.png")));
+		mnAes.add(mntmNewMenuItem_1);
+		
+		JMenu mnUsurio = new JMenu("Usu\u00E1rio");
+		mnUsurio.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/icons 1/user.png")));
+		mnUsurio.setForeground(new Color(204, 204, 204));
+		menuBar.add(mnUsurio);
+		
+		JMenuItem mntmInformaes = new JMenuItem("Informa\u00E7\u00F5es");
+		mntmInformaes.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/icons 1/application_view_list.png")));
+		mnUsurio.add(mntmInformaes);
+		
+		JMenu mnLogin = new JMenu("Finalizar");
+		mnLogin.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/icons 1/delete.png")));
 		mnLogin.setForeground(new Color(204, 204, 204));
 		menuBar.add(mnLogin);
 		
-		JMenuItem mntmLogin = new JMenuItem("Login");
-		mntmLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		mntmLogin.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/Icones/login.png")));
-		mnLogin.add(mntmLogin);
-		
 		JMenuItem mntmSair = new JMenuItem("Sair");
-		mntmSair.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/Icones/sair-menu.png")));
+		mntmSair.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/Icones/sair-menu-2.png")));
 		mntmSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.exit(0);
 			}
 		});
 		mnLogin.add(mntmSair);
-		
-		JMenu mnAes = new JMenu("A\u00E7\u00F5es");
-		mnAes.setForeground(new Color(204, 204, 204));
-		menuBar.add(mnAes);
-		
-		JMenuItem mntmPrestarContas = new JMenuItem("Prestar Contas");
-		mnAes.add(mntmPrestarContas);
-		
-		JMenuItem mntmNewMenuItem = new JMenuItem("Pedir Reembolso");
-		mnAes.add(mntmNewMenuItem);
-		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Analisar Solicitações");
-		mnAes.add(mntmNewMenuItem_1);
-		
-		JMenu mnUsurio = new JMenu("Usu\u00E1rio");
-		mnUsurio.setForeground(new Color(204, 204, 204));
-		menuBar.add(mnUsurio);
-		
-		JMenuItem mntmInformaes = new JMenuItem("Informa\u00E7\u00F5es");
-		mnUsurio.add(mntmInformaes);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -102,11 +101,11 @@ public class TelaLoginMDI extends JFrame {
 		
 		CadastrarFuncionarios funcionario = new CadastrarFuncionarios(1,"Juriscleiton",29,"492301","54025","ativo","Sim","Juriscleiton@gmail.com","123");
 		JMenuItem mntmBemVindoa = new JMenuItem("Bem Vindo(a) " + funcionario.getNome());
-		mntmBemVindoa.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/Icones/eleitor-menu-2.png")));
+		mntmBemVindoa.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/icons 1/award_star_gold_1.png")));
 		mntmBemVindoa.setSelected(true);
 		mntmBemVindoa.setBackground(new Color(51, 51, 51));
-		mntmBemVindoa.setForeground(new Color(204, 204, 204));
-		mntmBemVindoa.setBounds(486, 428, 208, 22);
+		mntmBemVindoa.setForeground(Color.WHITE);
+		mntmBemVindoa.setBounds(477, 419, 217, 31);
 		contentPane.add(mntmBemVindoa);
 		
 		JMenuBar menuBarBemVindo = new JMenuBar();
