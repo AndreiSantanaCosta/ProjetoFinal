@@ -19,7 +19,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JDesktopPane;
 
-public class TelaLogin extends JFrame {
+public class TelaLoginMDI extends JFrame {
 
 	private JPanel contentPane;
 
@@ -30,7 +30,7 @@ public class TelaLogin extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaLogin frame = new TelaLogin();
+					TelaLoginMDI frame = new TelaLoginMDI();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,7 +42,7 @@ public class TelaLogin extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaLogin() {
+	public TelaLoginMDI() {
 		setResizable(false);
 		setSize(700, 500); /*EU QUE COLOQUEI*/
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,15 +62,13 @@ public class TelaLogin extends JFrame {
 		JMenuItem mntmLogin = new JMenuItem("Login");
 		mntmLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				TelaLoginSDI telaLogin = new TelaLoginSDI();
-				
 			}
 		});
-		mntmLogin.setIcon(new ImageIcon(TelaLogin.class.getResource("/Icones/login.png")));
+		mntmLogin.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/Icones/login.png")));
 		mnLogin.add(mntmLogin);
 		
 		JMenuItem mntmSair = new JMenuItem("Sair");
-		mntmSair.setIcon(new ImageIcon(TelaLogin.class.getResource("/Icones/sair-menu.png")));
+		mntmSair.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/Icones/sair-menu.png")));
 		mntmSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				System.exit(0);
@@ -104,7 +102,7 @@ public class TelaLogin extends JFrame {
 		
 		CadastrarFuncionarios funcionario = new CadastrarFuncionarios(1,"Juriscleiton",29,"492301","54025","ativo","Sim","Juriscleiton@gmail.com","123");
 		JMenuItem mntmBemVindoa = new JMenuItem("Bem Vindo(a) " + funcionario.getNome());
-		mntmBemVindoa.setIcon(new ImageIcon(TelaLogin.class.getResource("/Icones/eleitor-menu-2.png")));
+		mntmBemVindoa.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/Icones/eleitor-menu-2.png")));
 		mntmBemVindoa.setSelected(true);
 		mntmBemVindoa.setBackground(new Color(51, 51, 51));
 		mntmBemVindoa.setForeground(new Color(204, 204, 204));
@@ -118,7 +116,7 @@ public class TelaLogin extends JFrame {
 		contentPane.add(menuBarBemVindo);
 		
 		JLabel iconeAcessoRapido = new JLabel("");
-		iconeAcessoRapido.setIcon(new ImageIcon(TelaLogin.class.getResource("/Icones/acesso-rapido.png")));
+		iconeAcessoRapido.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/Icones/acesso-rapido.png")));
 		iconeAcessoRapido.setHorizontalAlignment(SwingConstants.CENTER);
 		iconeAcessoRapido.setBackground(new Color(0, 0, 0));
 		iconeAcessoRapido.setBounds(0, -23, 694, 140);
