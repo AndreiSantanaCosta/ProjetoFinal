@@ -50,7 +50,7 @@ public class TelaLoginPrincipal extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		this.setLocationRelativeTo(null); /*EU QUE COLOQUEI*/
+		this.setLocationRelativeTo(null); 
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
