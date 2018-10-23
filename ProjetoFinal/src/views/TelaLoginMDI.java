@@ -51,6 +51,7 @@ public class TelaLoginMDI extends JFrame {
 	}
 	
 	public TelaLoginMDI() {
+		setTitle("Gerenciamento de Solicita\u00E7\u00F5es");
 		setResizable(false);
 		setSize(700, 500); /*SETA O TAMANHO DO CONTAINER*/
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -107,7 +108,7 @@ public class TelaLoginMDI extends JFrame {
 		mntmInformaes.setBackground(Color.WHITE);
 		mntmInformaes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+				new TelaInformacoes().setVisible(true);;
 			}
 		});
 		mntmInformaes.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/icons 1/application_view_list.png")));

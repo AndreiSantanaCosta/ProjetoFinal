@@ -50,6 +50,7 @@ public class TelaCadastrarFuncionario extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaCadastrarFuncionario() {
+		setTitle("Cadastro");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 400);
@@ -77,7 +78,7 @@ public class TelaCadastrarFuncionario extends JFrame {
 		lblCadastro.setBounds(88, 204, 127, 33);
 		panel.add(lblCadastro);
 		
-		JLabel lblFuncionarios = new JLabel("DE FUNCIONARIOS");
+		JLabel lblFuncionarios = new JLabel("DE FUNCION\u00C1RIOS");
 		lblFuncionarios.setHorizontalAlignment(SwingConstants.CENTER);
 		lblFuncionarios.setForeground(Color.WHITE);
 		lblFuncionarios.setFont(new Font("Arial", Font.BOLD, 18));

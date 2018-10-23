@@ -43,6 +43,7 @@ public class TelaLoginPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaLoginPrincipal() {
+		setTitle("Login");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -109,11 +110,11 @@ public class TelaLoginPrincipal extends JFrame {
 		btnLogin.setBounds(112, 226, 89, 23);
 		contentPane.add(btnLogin);
 		
-		JButton btnEsqueciMinhaSenha = new JButton("Esqueci Minha Senha");
+		JButton btnEsqueciMinhaSenha = new JButton("Ajuda");
 		btnEsqueciMinhaSenha.setForeground(Color.LIGHT_GRAY);
 		btnEsqueciMinhaSenha.setFont(new Font("Arial", Font.BOLD, 12));
 		btnEsqueciMinhaSenha.setBackground(Color.DARK_GRAY);
-		btnEsqueciMinhaSenha.setBounds(218, 227, 170, 23);
+		btnEsqueciMinhaSenha.setBounds(211, 226, 89, 23);
 		contentPane.add(btnEsqueciMinhaSenha);
 		
 		JLabel label_1 = new JLabel("");
