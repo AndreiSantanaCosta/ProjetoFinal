@@ -70,6 +70,7 @@ public class TelaLoginMDI extends JFrame {
 		
 		
 		JMenuItem mntmPrestarContas = new JMenuItem("Prestar Contas");
+		mntmPrestarContas.setBackground(Color.WHITE);
 		mntmPrestarContas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
@@ -78,14 +79,17 @@ public class TelaLoginMDI extends JFrame {
 		mnAes.add(mntmPrestarContas);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Pedir Reembolso");
+		mntmNewMenuItem.setBackground(Color.WHITE);
 		mntmNewMenuItem.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/icons 1/money.png")));
 		mnAes.add(mntmNewMenuItem);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Analisar Solicitações");
+		mntmNewMenuItem_1.setBackground(Color.WHITE);
 		mntmNewMenuItem_1.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/icons 1/magnifier.png")));
 		mnAes.add(mntmNewMenuItem_1);
 		
 		JMenuItem mntmCadastrarFuncionrios = new JMenuItem("Cadastrar Funcion\u00E1rios");
+		mntmCadastrarFuncionrios.setBackground(Color.WHITE);
 		mntmCadastrarFuncionrios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				new TelaCadastrarFuncionario().setVisible(true);
@@ -100,6 +104,7 @@ public class TelaLoginMDI extends JFrame {
 		menuBar.add(mnUsurio);
 		
 		JMenuItem mntmInformaes = new JMenuItem("Informa\u00E7\u00F5es");
+		mntmInformaes.setBackground(Color.WHITE);
 		mntmInformaes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
@@ -114,6 +119,7 @@ public class TelaLoginMDI extends JFrame {
 		menuBar.add(mnLogin);
 		
 		JMenuItem mntmSair = new JMenuItem("Sair");
+		mntmSair.setBackground(Color.WHITE);
 		mntmSair.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/Icones/sair-menu-2.png")));
 		mntmSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

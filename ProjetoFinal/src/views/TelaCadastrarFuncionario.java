@@ -16,18 +16,19 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.SwingConstants;
 
 public class TelaCadastrarFuncionario extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField txtNome;
 	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
+	private JTextField txtCpf;
+	private JTextField txtRg;
+	private JTextField txtEmail;
+	private JTextField txtSenha;
 
 	/**
 	 * Launch the application.
@@ -59,33 +60,36 @@ public class TelaCadastrarFuncionario extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
-		panel.setBounds(219, 0, 275, 371);
+		panel.setBounds(205, 0, 289, 371);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JLabel label = new JLabel("");
+		label.setHorizontalAlignment(SwingConstants.CENTER);
 		label.setIcon(new ImageIcon(TelaCadastrarFuncionario.class.getResource("/Icones/user.png")));
-		label.setBounds(115, 136, 64, 72);
+		label.setBounds(99, 132, 97, 72);
 		panel.add(label);
 		
 		JLabel lblCadastro = new JLabel("CADASTRO");
-		lblCadastro.setFont(new Font("Arial", Font.PLAIN, 12));
-		lblCadastro.setForeground(Color.LIGHT_GRAY);
-		lblCadastro.setBounds(115, 205, 70, 14);
+		lblCadastro.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCadastro.setFont(new Font("Arial", Font.BOLD, 18));
+		lblCadastro.setForeground(Color.WHITE);
+		lblCadastro.setBounds(88, 204, 127, 33);
 		panel.add(lblCadastro);
 		
-		JLabel lblFuncionarios = new JLabel("FUNCIONARIOS");
-		lblFuncionarios.setForeground(Color.LIGHT_GRAY);
-		lblFuncionarios.setFont(new Font("Arial", Font.PLAIN, 12));
-		lblFuncionarios.setBounds(105, 219, 91, 14);
+		JLabel lblFuncionarios = new JLabel("DE FUNCIONARIOS");
+		lblFuncionarios.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFuncionarios.setForeground(Color.WHITE);
+		lblFuncionarios.setFont(new Font("Arial", Font.BOLD, 18));
+		lblFuncionarios.setBounds(32, 230, 233, 27);
 		panel.add(lblFuncionarios);
 		
-		JButton btnLimpar = new JButton("Limpar \r\nCampos");
-		btnLimpar.setForeground(Color.LIGHT_GRAY);
-		btnLimpar.setBackground(Color.DARK_GRAY);
-		btnLimpar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnLimpar.setBounds(133, 327, 132, 33);
-		panel.add(btnLimpar);
+		JButton btnLimparCampos = new JButton("Limpar \r\nCampos");
+		btnLimparCampos.setForeground(Color.WHITE);
+		btnLimparCampos.setBackground(Color.DARK_GRAY);
+		btnLimparCampos.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnLimparCampos.setBounds(147, 327, 132, 33);
+		panel.add(btnLimparCampos);
 		
 		JLabel label_1 = new JLabel("");
 		label_1.addMouseListener(new MouseAdapter() {
@@ -99,28 +103,30 @@ public class TelaCadastrarFuncionario extends JFrame {
 		panel.add(label_1);
 		
 		JButton btnRegistrar = new JButton("Registrar");
+		btnRegistrar.setIcon(new ImageIcon(TelaCadastrarFuncionario.class.getResource("/Icones/login.png")));
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnRegistrar.setForeground(Color.LIGHT_GRAY);
+		btnRegistrar.setForeground(Color.WHITE);
 		btnRegistrar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnRegistrar.setBackground(Color.DARK_GRAY);
-		btnRegistrar.setBounds(21, 327, 102, 33);
+		btnRegistrar.setBounds(10, 327, 127, 33);
 		panel.add(btnRegistrar);
 		
 		JLabel lblLogin = new JLabel("Nome:");
-		lblLogin.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblLogin.setFont(new Font("Arial", Font.BOLD, 12));
 		lblLogin.setBounds(20, 11, 55, 14);
 		contentPane.add(lblLogin);
 		
-		textField = new JTextField();
-		textField.setBounds(30, 28, 100, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		txtNome = new JTextField();
+		txtNome.setBackground(Color.WHITE);
+		txtNome.setBounds(30, 28, 100, 20);
+		contentPane.add(txtNome);
+		txtNome.setColumns(10);
 		
 		JLabel lblIdade = new JLabel("Idade:");
-		lblIdade.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblIdade.setFont(new Font("Arial", Font.BOLD, 12));
 		lblIdade.setBounds(140, 11, 55, 14);
 		contentPane.add(lblIdade);
 		
@@ -129,65 +135,72 @@ public class TelaCadastrarFuncionario extends JFrame {
 		textField_1.setBounds(150, 28, 30, 20);
 		contentPane.add(textField_1);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		textField_2.setBounds(30, 75, 100, 20);
-		contentPane.add(textField_2);
+		txtCpf = new JTextField();
+		txtCpf.setColumns(10);
+		txtCpf.setBounds(30, 75, 100, 20);
+		contentPane.add(txtCpf);
 		
 		JLabel lblCpf = new JLabel("CPF:");
-		lblCpf.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblCpf.setFont(new Font("Arial", Font.BOLD, 12));
 		lblCpf.setBounds(20, 58, 55, 14);
 		contentPane.add(lblCpf);
 		
 		JLabel lblRg = new JLabel("RG:");
-		lblRg.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblRg.setFont(new Font("Arial", Font.BOLD, 12));
 		lblRg.setBounds(20, 103, 55, 14);
 		contentPane.add(lblRg);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		textField_3.setBounds(30, 120, 100, 20);
-		contentPane.add(textField_3);
+		txtRg = new JTextField();
+		txtRg.setColumns(10);
+		txtRg.setBounds(30, 120, 100, 20);
+		contentPane.add(txtRg);
 		
 		JLabel lblPerfilFuncionrio = new JLabel("Perfil Funcion\u00E1rio:");
-		lblPerfilFuncionrio.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblPerfilFuncionrio.setBounds(20, 154, 86, 14);
+		lblPerfilFuncionrio.setFont(new Font("Arial", Font.BOLD, 12));
+		lblPerfilFuncionrio.setBounds(20, 154, 110, 14);
 		contentPane.add(lblPerfilFuncionrio);
 		
-		textField_4 = new JTextField();
-		textField_4.setColumns(10);
-		textField_4.setBounds(30, 171, 100, 20);
-		contentPane.add(textField_4);
-		
 		JLabel lblResponsavel = new JLabel("Responsavel:");
-		lblResponsavel.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblResponsavel.setFont(new Font("Arial", Font.PLAIN, 11));
 		lblResponsavel.setBounds(20, 202, 86, 14);
 		contentPane.add(lblResponsavel);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		textField_5.setBounds(30, 219, 100, 20);
-		contentPane.add(textField_5);
-		
 		JLabel lblEmail = new JLabel("E-MAIL:");
-		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblEmail.setFont(new Font("Arial", Font.BOLD, 12));
 		lblEmail.setBounds(20, 250, 55, 14);
 		contentPane.add(lblEmail);
 		
-		textField_6 = new JTextField();
-		textField_6.setColumns(10);
-		textField_6.setBounds(30, 267, 150, 20);
-		contentPane.add(textField_6);
+		txtEmail = new JTextField();
+		txtEmail.setColumns(10);
+		txtEmail.setBounds(30, 267, 150, 20);
+		contentPane.add(txtEmail);
 		
 		JLabel lblSenha = new JLabel("SENHA:");
-		lblSenha.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		lblSenha.setFont(new Font("Arial", Font.BOLD, 12));
 		lblSenha.setBounds(20, 298, 55, 14);
 		contentPane.add(lblSenha);
 		
-		textField_7 = new JTextField();
-		textField_7.setColumns(10);
-		textField_7.setBounds(30, 315, 100, 20);
-		contentPane.add(textField_7);
+		txtSenha = new JTextField();
+		txtSenha.setColumns(10);
+		txtSenha.setBounds(30, 315, 100, 20);
+		contentPane.add(txtSenha);
+		
+		JComboBox comboBoxPerfil = new JComboBox();
+		comboBoxPerfil.setBackground(Color.WHITE);
+		comboBoxPerfil.setModel(new DefaultComboBoxModel(new String[] {"Gerente Chefe", "Gestor", "Funcion\u00E1rio"}));
+		comboBoxPerfil.setBounds(30, 171, 100, 20);
+		contentPane.add(comboBoxPerfil);
+		
+		JComboBox comboBoxResponsavel = new JComboBox();
+		comboBoxResponsavel.setBackground(Color.WHITE);
+		comboBoxResponsavel.setModel(new DefaultComboBoxModel(new String[] {"1", "2"}));
+		comboBoxResponsavel.setBounds(30, 219, 100, 20);
+		contentPane.add(comboBoxResponsavel);
+		
+		JLabel label_2 = new JLabel("");
+		label_2.setIcon(new ImageIcon(TelaCadastrarFuncionario.class.getResource("/bg2.jpg")));
+		label_2.setBounds(0, 0, 206, 371);
+		contentPane.add(label_2);
 		this.setLocationRelativeTo(null); /*CENTRALIZA O CONTAINER*/
 	}
 }
