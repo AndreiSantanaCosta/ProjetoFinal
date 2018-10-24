@@ -122,18 +122,18 @@ public class TelaCadastrarFuncionario extends JFrame {
 		
 		txtNome = new JTextField();
 		txtNome.setBackground(Color.WHITE);
-		txtNome.setBounds(30, 28, 100, 20);
+		txtNome.setBounds(30, 28, 150, 20);
 		contentPane.add(txtNome);
 		txtNome.setColumns(10);
 		
 		JLabel lblIdade = new JLabel("Idade:");
 		lblIdade.setFont(new Font("Arial", Font.BOLD, 12));
-		lblIdade.setBounds(140, 11, 55, 14);
+		lblIdade.setBounds(140, 298, 55, 14);
 		contentPane.add(lblIdade);
 		
 		textField_1 = new JTextField();
 		textField_1.setColumns(10);
-		textField_1.setBounds(150, 28, 30, 20);
+		textField_1.setBounds(150, 315, 30, 20);
 		contentPane.add(textField_1);
 		
 		txtCpf = new JTextField();
@@ -195,7 +195,7 @@ public class TelaCadastrarFuncionario extends JFrame {
 		JComboBox comboBoxResponsavel = new JComboBox();
 		comboBoxResponsavel.setBackground(Color.WHITE);
 		comboBoxResponsavel.setModel(new DefaultComboBoxModel(new String[] {"1", "2"}));
-		comboBoxResponsavel.setBounds(30, 219, 100, 20);
+		comboBoxResponsavel.setBounds(30, 219, 150, 20);
 		contentPane.add(comboBoxResponsavel);
 		
 		JLabel label_2 = new JLabel("");
