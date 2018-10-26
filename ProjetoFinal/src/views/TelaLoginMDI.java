@@ -1,5 +1,5 @@
 package views;
-import SistemaCorporativo.CadastrarFuncionarios;
+import SistemaCorporativo.Funcionario;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -134,7 +134,7 @@ public class TelaLoginMDI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		CadastrarFuncionarios funcionario = new CadastrarFuncionarios(1,"Juriscleiton",29,"492301","54025","ativo","Sim","Juriscleiton@gmail.com","123");
+		Funcionario funcionario = new Funcionario("aaaaa","aaaaa","aaaaaa", 1, 1, "aaaaaaa", "aaaaaa");
 		
 		JMenuBar menuBarBemVindo = new JMenuBar();
 		menuBarBemVindo.setBackground(new Color(51, 51, 51));

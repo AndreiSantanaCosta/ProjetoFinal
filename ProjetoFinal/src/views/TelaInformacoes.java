@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import SistemaCorporativo.CadastrarFuncionarios;
+import SistemaCorporativo.Funcionario;
 
 import java.awt.Color;
 import javax.swing.JLabel;
@@ -74,7 +74,7 @@ public class TelaInformacoes extends JFrame {
 		lblDoFuncionario.setBounds(26, 210, 233, 27);
 		panel.add(lblDoFuncionario);
 		
-		CadastrarFuncionarios funcionario = new CadastrarFuncionarios(1,"Juriscleiton",29,"492301","54025","ativo","Sim","Juriscleiton@gmail.com","123");
+		Funcionario funcionario = new Funcionario("aaaaa","aaaaa","aaaaaa", 1, 1, "aaaaaaa", "aaaaaa");
 		JLabel label_1 = new JLabel("Nome: " + funcionario.getNome());
 		label_1.setIcon(new ImageIcon(TelaInformacoes.class.getResource("/icons/email.ico")));
 		label_1.setFont(new Font("Arial", Font.BOLD, 14));

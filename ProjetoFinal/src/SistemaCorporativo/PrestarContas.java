@@ -7,10 +7,10 @@ public class PrestarContas {
 	private String contaDoMes;
 	private int status;
 	private String contaCol;
-	private CadastrarFuncionarios codigoFuncionario;
+	private Funcionario codigoFuncionario;
 	
 	public PrestarContas(int codigoConta, String cartao, String contaDoMes, int status, String contaCol,
-			CadastrarFuncionarios codigoFuncionario) {
+			Funcionario codigoFuncionario) {
 		super();
 		this.codigoConta = codigoConta;
 		this.cartao = cartao;
@@ -60,11 +60,11 @@ public class PrestarContas {
 		this.contaCol = contaCol;
 	}
 
-	public CadastrarFuncionarios getCodigoFuncionario() {
+	public Funcionario getCodigoFuncionario() {
 		return codigoFuncionario;
 	}
 
-	public void setCodigoFuncionario(CadastrarFuncionarios codigoFuncionario) {
+	public void setCodigoFuncionario(Funcionario codigoFuncionario) {
 		this.codigoFuncionario = codigoFuncionario;
 	}
 	
