@@ -189,7 +189,7 @@ public class TelaCadastrarFuncionario extends JFrame {
 		JComboBox comboBoxPerfil = new JComboBox();
 		comboBoxPerfil.setBackground(Color.WHITE);
 		comboBoxPerfil.setModel(new DefaultComboBoxModel(new String[] {"Gerente Chefe", "Gestor", "Funcion\u00E1rio"}));
-		comboBoxPerfil.setBounds(30, 171, 100, 20);
+		comboBoxPerfil.setBounds(30, 171, 150, 20);
 		contentPane.add(comboBoxPerfil);
 		
 		JComboBox comboBoxResponsavel = new JComboBox();

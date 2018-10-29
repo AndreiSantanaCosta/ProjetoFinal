@@ -74,6 +74,7 @@ public class TelaLoginMDI extends JFrame {
 		mntmPrestarContas.setBackground(Color.WHITE);
 		mntmPrestarContas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				new TelaPrestarContas().setVisible(true);
 			}
 		});
 		mntmPrestarContas.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/icons 1/book_open.png")));
