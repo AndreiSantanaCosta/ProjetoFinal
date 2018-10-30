@@ -23,7 +23,7 @@ import javax.swing.JDesktopPane;
 public class TelaLoginMDI extends JFrame {
 
 	private JPanel contentPane;
-
+	private Funcionario funcionario;
 	/**
 	 * Launch the application.
 	 */
@@ -51,6 +51,11 @@ public class TelaLoginMDI extends JFrame {
 	}
 	
 	public TelaLoginMDI() {
+		
+	}
+	
+	public TelaLoginMDI(Funcionario funcionario) {
+		this.funcionario = funcionario;
 		setTitle("Gerenciamento de Solicita\u00E7\u00F5es");
 		setResizable(false);
 		setSize(700, 500); /*SETA O TAMANHO DO CONTAINER*/
@@ -134,9 +139,7 @@ public class TelaLoginMDI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		Funcionario funcionario = new Funcionario("aaaaa","aaaaa","aaaaaa", 1, 1, "aaaaaaa", "aaaaaa");
-		
+	
 		JMenuBar menuBarBemVindo = new JMenuBar();
 		menuBarBemVindo.setBackground(new Color(51, 51, 51));
 		menuBarBemVindo.setBorderPainted(false);

@@ -6,6 +6,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Conexao.Conexao;
+import SistemaCorporativo.Funcionario;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -14,6 +18,7 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Connection;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
@@ -105,10 +110,7 @@ public class TelaCadastrarFuncionario extends JFrame {
 		
 		JButton btnRegistrar = new JButton("Registrar");
 		btnRegistrar.setIcon(new ImageIcon(TelaCadastrarFuncionario.class.getResource("/Icones/login.png")));
-		btnRegistrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		
 		btnRegistrar.setForeground(Color.WHITE);
 		btnRegistrar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnRegistrar.setBackground(Color.DARK_GRAY);
@@ -203,5 +205,21 @@ public class TelaCadastrarFuncionario extends JFrame {
 		label_2.setBounds(0, 0, 206, 371);
 		contentPane.add(label_2);
 		this.setLocationRelativeTo(null); /*CENTRALIZA O CONTAINER*/
+		
+		btnRegistrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String nome = txtNome.getText();
+				String senha = txtSenha.getText();
+				String login = nome;
+				String rg = txtRg.getText();
+				String cpf = txtCpf.getText();
+				int perfil = comboBoxPerfil.getSelectedIndex();
+				int responsavel = comboBoxResponsavel.getSelectedIndex() + 1;
+				String email = txtEmail.getText();
+				
+				Funcionario funcionario = new Funcionario(nome, senha, email, login, rg, cpf, perfil, responsavel);
+				funcionario.insertFuncionario();
+			}
+		});
 	}
 }

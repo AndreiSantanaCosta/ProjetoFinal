@@ -6,6 +6,11 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Conexao.Conexao;
+import SistemaCorporativo.Funcionario;
+//import SistemaCorporativo.Statement;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -15,6 +20,8 @@ import javax.swing.JTextField;
 import javax.swing.JPasswordField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 
 public class TelaLoginPrincipal extends JFrame {
@@ -91,8 +98,31 @@ public class TelaLoginPrincipal extends JFrame {
 		btnLogin.addActionListener(new ActionListener() {
 			int contador = 0;
 			public void actionPerformed(ActionEvent arg0) {
-				if(inputLogin.getText().equals("admin") && inputSenha.getText().equals("admin")) {
-					new TelaLoginMDI().setVisible(true);
+				if(inputLogin.getText() != null && inputSenha.getPassword() != null) {
+					Conexao conection = new Conexao();
+					try {
+						
+						Connection conn = conection.getConexaoMYSQL();
+						Funcionario funcionario = new Funcionario(conn);
+						String senha = String.valueOf(inputSenha.getPassword());
+						funcionario.loginFuncionario(inputLogin.getText(), senha);
+						
+						if(funcionario.getVerificaLogin() == true) {
+							TelaLoginMDI frame = new TelaLoginMDI(funcionario);
+							frame.setVisible(true);
+							
+						}else {
+							JOptionPane.showMessageDialog(null, "Usuario não cadastrado. Contate o Administrador do sistema");
+							conection.closeConexaoMYSQL();
+							TelaLoginPrincipal framePrincipal = new TelaLoginPrincipal();
+							framePrincipal.setVisible(true);
+						}
+						
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
 					dispose();
 				}else {
 					contador++;
