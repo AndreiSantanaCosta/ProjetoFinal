@@ -74,7 +74,7 @@ public class TelaInformacoes extends JFrame {
 		lblDoFuncionario.setBounds(26, 210, 233, 27);
 		panel.add(lblDoFuncionario);
 		
-		Funcionario funcionario = new Funcionario("aaaaa","aaaaa","aaaaaa", 1, 1, "aaaaaaa", "aaaaaa");
+		Funcionario funcionario = new Funcionario();
 		JLabel label_1 = new JLabel("Nome: " + funcionario.getNome());
 		label_1.setIcon(new ImageIcon(TelaInformacoes.class.getResource("/icons/email.ico")));
 		label_1.setFont(new Font("Arial", Font.BOLD, 14));
@@ -107,7 +107,7 @@ public class TelaInformacoes extends JFrame {
 		label_4.setBounds(302, 225, 249, 17);
 		contentPane.add(label_4);
 		
-		JLabel label_5 = new JLabel("Idade: " + funcionario.getIdade());
+		JLabel label_5 = new JLabel("Idade: ");
 		label_5.setFont(new Font("Arial", Font.BOLD, 14));
 		label_5.setBounds(302, 112, 249, 14);
 		contentPane.add(label_5);

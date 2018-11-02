@@ -16,6 +16,11 @@ import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDayChooser;
+
+import DAO.despesaDAO;
+import SistemaCorporativo.ContaDespesa;
+import SistemaCorporativo.Funcionario;
+
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JList;
@@ -31,7 +36,7 @@ public class TelaPrestarContas extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtNumeroDoCartao;
 	private JTextField txtValorPago;
-
+	private despesaDAO despesaD;
 	/**
 	 * Launch the application.
 	 */
@@ -39,8 +44,8 @@ public class TelaPrestarContas extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaPrestarContas frame = new TelaPrestarContas();
-					frame.setVisible(true);
+					//TelaPrestarContas frame = new TelaPrestarContas();
+					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -52,6 +57,10 @@ public class TelaPrestarContas extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaPrestarContas() {
+		
+	}
+	
+	public TelaPrestarContas(Funcionario funcionario) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 591, 460);
 		contentPane = new JPanel();
@@ -113,6 +122,10 @@ public class TelaPrestarContas extends JFrame {
 		label_12.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				ContaDespesa despesa = new ContaDespesa(data, Double.parseDouble(txtValorPago.getText()), textDecricao.getText(), (comboCategoria.getSelectedIndex()+1));
+				despesaD = new despesaDAO();
+				despesaD.saveDespesaArrayList(despesa);
+				
 				String quebraLinha = "------------FIM DO PEDIDO------------";
 				txtDespesasLançadas.setText("Data: " + data + "\n Valor Pago: " + txtValorPago.getText()
 						+ "\n Categoria: " + comboCategoria.getSelectedIndex() + "\n Descrição: " + textDecricao.getText() + "\n" + quebraLinha);
@@ -167,6 +180,10 @@ public class TelaPrestarContas extends JFrame {
 		txtNumeroDoCartao.setBounds(29, 232, 130, 20);
 		panel_2.add(txtNumeroDoCartao);
 		txtNumeroDoCartao.setColumns(16);
+		
+		JLabel lblCadastrarConta = new JLabel("Cadastrar Conta");
+		lblCadastrarConta.setBounds(29, 333, 101, 23);
+		panel_2.add(lblCadastrarConta);
 
 		JLabel label_5 = new JLabel("Valor Pago:");
 		label_5.setFont(new Font("Tahoma", Font.PLAIN, 14));

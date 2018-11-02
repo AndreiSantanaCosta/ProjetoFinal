@@ -8,6 +8,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Conexao.Conexao;
+import DAO.funcionarioDAO;
 import SistemaCorporativo.Funcionario;
 
 import java.awt.Color;
@@ -34,7 +35,7 @@ public class TelaCadastrarFuncionario extends JFrame {
 	private JTextField txtRg;
 	private JTextField txtEmail;
 	private JTextField txtSenha;
-
+	private funcionarioDAO funcionarioD;
 	/**
 	 * Launch the application.
 	 */
@@ -218,7 +219,8 @@ public class TelaCadastrarFuncionario extends JFrame {
 				String email = txtEmail.getText();
 				
 				Funcionario funcionario = new Funcionario(nome, senha, email, login, rg, cpf, perfil, responsavel);
-				funcionario.insertFuncionario();
+				funcionarioD = new funcionarioDAO();
+				funcionarioD.insertFuncionario(funcionario);
 			}
 		});
 	}

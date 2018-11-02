@@ -135,57 +135,6 @@ public class Funcionario {
 		this.verificaLogin = verificaLogin;
 	}
 	
-	public void loginFuncionario( String login, String senha) {
-		PreparedStatement stmt = null;
-		try {
-			String sql = "SELECT * FROM funcionario WHERE fun_login  = ? AND fun_senha = ?";
-			stmt = this.conn.prepareStatement(sql);
-			stmt.setString(1, login);
-			stmt.setString(2, senha);
-		
-			ResultSet result = stmt.executeQuery();
-			
-			while(result.next()) {
-				this.verificaLogin = true;
-				setCodigoFuncionario(result.getInt(1));
-				setNome(result.getString(2));
-				setPerfilFuncionario(result.getInt(8));
-			}
-			
-		}catch (Exception e) {
-			System.out.println(e);
-		}
-	}
 	
-	
-	//=>Insert de Funcionario
-	public void insertFuncionario() {
-		Conexao conection = new Conexao();
-		
-		//=> Query de INSERT
-		String sql = "INSERT INTO funcionario (fun_nome, fun_senha, fun_login, fun_rg ,"
-				+ "fun_cpf, fun_data_cadastro,fun_responsavel, fun_perfil, fun_email)"
-							+ "VALUES(?,?,?,?,?,?,?,?,?)";
-		try {
-			Connection con = conection.getConexaoMYSQL();
-			PreparedStatement stmt = con.prepareStatement(sql);
-			stmt.setString(1, getNome());
-			stmt.setString(2, getSenha());
-			stmt.setString(3, getLogin());
-			stmt.setString(4, getRg());
-			stmt.setString(5, getCpf());
-			stmt.setString(6, "2018-01-01");
-			stmt.setInt(7, getResponsavel());
-			stmt.setInt(8, getPerfilFuncionario());
-			stmt.setString(9, getEmail());
-			stmt.execute();
-			stmt.close();
-			JOptionPane.showMessageDialog(null, "Registrado com Sucesso");
-			conection.closeConexaoMYSQL();
-		}catch(SQLException e) {
-			System.out.println(e.getErrorCode() + "\n" + e.getMessage() + "\n" + e.getCause());
-		}
-		
-	}
 	
 }

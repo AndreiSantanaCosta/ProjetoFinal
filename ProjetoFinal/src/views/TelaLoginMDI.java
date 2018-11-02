@@ -79,7 +79,7 @@ public class TelaLoginMDI extends JFrame {
 		mntmPrestarContas.setBackground(Color.WHITE);
 		mntmPrestarContas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new TelaPrestarContas().setVisible(true);
+				new TelaPrestarContas(funcionario).setVisible(true);
 			}
 		});
 		mntmPrestarContas.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/icons 1/book_open.png")));
@@ -130,7 +130,10 @@ public class TelaLoginMDI extends JFrame {
 		mntmSair.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/Icones/sair-menu-2.png")));
 		mntmSair.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				System.exit(0);
+				TelaLoginPrincipal telalogin = new TelaLoginPrincipal();
+				dispose();
+				telalogin.setVisible(true);
+				//System.exit(0);
 			}
 		});
 		mnLogin.add(mntmSair);
