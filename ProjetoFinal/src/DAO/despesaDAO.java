@@ -53,7 +53,7 @@ public class despesaDAO {
 		Conexao conection = new Conexao();
 		PreparedStatement stmt = null;		
 		despesa = new ContaDespesa();
-			String sql = "";
+			String sql = "SELECT conta_id FROM prestar_conta ORDER BY conta_id DESC LIMIT 0,1";
 		
 		try {
 			Connection con = conection.getConexaoMYSQL();
