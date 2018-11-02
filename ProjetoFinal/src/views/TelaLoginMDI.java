@@ -19,6 +19,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JDesktopPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 public class TelaLoginMDI extends JFrame {
 
@@ -50,11 +52,11 @@ public class TelaLoginMDI extends JFrame {
 		return desktop;
 	}
 	
-	public TelaLoginMDI() {
+	/*public TelaLoginMDI() {
 		
-	}
+	}*/
 	
-	public TelaLoginMDI(Funcionario funcionario) {
+	public TelaLoginMDI(/*Funcionario funcionario*/) {
 		this.funcionario = funcionario;
 		setTitle("Gerenciamento de Solicita\u00E7\u00F5es");
 		setResizable(false);
@@ -79,7 +81,7 @@ public class TelaLoginMDI extends JFrame {
 		mntmPrestarContas.setBackground(Color.WHITE);
 		mntmPrestarContas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new TelaPrestarContas(funcionario).setVisible(true);
+				new TelaPrestarContas(/*funcionario*/).setVisible(true);
 			}
 		});
 		mntmPrestarContas.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/icons 1/book_open.png")));
@@ -161,7 +163,7 @@ public class TelaLoginMDI extends JFrame {
 		panel.setBounds(0, 0, 694, 117);
 		contentPane.add(panel);
 		panel.setLayout(null);
-		JMenuItem mntmBemVindoa = new JMenuItem("Bem Vindo(a) " + funcionario.getNome());
+		JMenuItem mntmBemVindoa = new JMenuItem("Bem Vindo(a) "/* + funcionario.getNome()*/);
 		mntmBemVindoa.setSelected(true);
 		mntmBemVindoa.setBounds(477, 0, 217, 22);
 		panel.add(mntmBemVindoa);
@@ -172,6 +174,7 @@ public class TelaLoginMDI extends JFrame {
 		JPanel panel_1 = new JPanel();
 		panel_1.setBounds(0, 116, 694, 334);
 		contentPane.add(panel_1);
+		panel_1.setLayout(null);
 		
 		
 	}

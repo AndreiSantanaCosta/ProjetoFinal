@@ -110,7 +110,7 @@ public class TelaLoginPrincipal extends JFrame {
 						funcionarioD.loginFuncionario(funcionario);
 						
 						if(funcionario.getVerificaLogin() == true) {
-							TelaLoginMDI frame = new TelaLoginMDI(funcionario);
+							TelaLoginMDI frame = new TelaLoginMDI(/*funcionario*/);
 							frame.setVisible(true);
 							
 						}else {

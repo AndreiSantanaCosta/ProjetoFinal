@@ -30,6 +30,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.SystemColor;
 import java.awt.Scrollbar;
+import javax.swing.JRadioButton;
 
 public class TelaPrestarContas extends JFrame {
 
@@ -56,13 +57,13 @@ public class TelaPrestarContas extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaPrestarContas() {
+	/*public TelaPrestarContas() {
 		
-	}
+	}*/
 	
-	public TelaPrestarContas(Funcionario funcionario) {
+	public TelaPrestarContas(/*Funcionario funcionario*/) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 591, 460);
+		setBounds(100, 100, 591, 450);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -122,9 +123,9 @@ public class TelaPrestarContas extends JFrame {
 		label_12.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				ContaDespesa despesa = new ContaDespesa(data, Double.parseDouble(txtValorPago.getText()), textDecricao.getText(), (comboCategoria.getSelectedIndex()+1));
-				despesaD = new despesaDAO();
-				despesaD.saveDespesaArrayList(despesa);
+				//ContaDespesa despesa = new ContaDespesa(data, Double.parseDouble(txtValorPago.getText()), textDecricao.getText(), (comboCategoria.getSelectedIndex()+1));
+				//despesaD = new despesaDAO();
+				//despesaD.saveDespesaArrayList(despesa);
 				
 				String quebraLinha = "------------FIM DO PEDIDO------------";
 				txtDespesasLançadas.setText("Data: " + data + "\n Valor Pago: " + txtValorPago.getText()
@@ -182,8 +183,23 @@ public class TelaPrestarContas extends JFrame {
 		txtNumeroDoCartao.setColumns(16);
 		
 		JLabel lblCadastrarConta = new JLabel("Cadastrar Conta");
-		lblCadastrarConta.setBounds(29, 333, 101, 23);
+		lblCadastrarConta.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblCadastrarConta.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+			}
+		});
+		lblCadastrarConta.setForeground(Color.WHITE);
+		lblCadastrarConta.setIcon(new ImageIcon(TelaPrestarContas.class.getResource("/icons 1/layout_add.png")));
+		lblCadastrarConta.setToolTipText("Cadastrar Conta");
+		lblCadastrarConta.setBounds(29, 332, 120, 23);
 		panel_2.add(lblCadastrarConta);
+		
+		JRadioButton rdbtnNoTenhoCarto = new JRadioButton("N\u00E3o tenho Cart\u00E3o");
+		rdbtnNoTenhoCarto.setForeground(Color.WHITE);
+		rdbtnNoTenhoCarto.setBackground(Color.DARK_GRAY);
+		rdbtnNoTenhoCarto.setBounds(29, 259, 130, 23);
+		panel_2.add(rdbtnNoTenhoCarto);
 
 		JLabel label_5 = new JLabel("Valor Pago:");
 		label_5.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -202,7 +218,7 @@ public class TelaPrestarContas extends JFrame {
 
 		JLabel label_9 = new JLabel("");
 		label_9.setIcon(new ImageIcon(TelaPrestarContas.class.getResource("/bg2.jpg")));
-		label_9.setBounds(20, 0, 578, 382);
+		label_9.setBounds(20, 0, 578, 381);
 		panel_1.add(label_9);
 
 		JPanel panel = new JPanel();
