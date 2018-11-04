@@ -6,18 +6,17 @@ public class PrestarContas {
 	private String cartao;
 	private String contaDoMes;
 	private int status;
-	private String contaCol;
-	private Funcionario codigoFuncionario;
+	private int codigoFuncionario;
+	private int contaTipo;
 	
-	public PrestarContas(int codigoConta, String cartao, String contaDoMes, int status, String contaCol,
-			Funcionario codigoFuncionario) {
+	public PrestarContas(String cartao, String contaDoMes, int status,
+			int codigoFuncionario, int contaTipo) {
 		super();
-		this.codigoConta = codigoConta;
 		this.cartao = cartao;
 		this.contaDoMes = contaDoMes;
 		this.status = status;
-		this.contaCol = contaCol;
 		this.codigoFuncionario = codigoFuncionario;
+		this.contaTipo = contaTipo;
 	}
 
 	public int getCodigoConta() {
@@ -52,20 +51,20 @@ public class PrestarContas {
 		this.status = status;
 	}
 
-	public String getContaCol() {
-		return contaCol;
-	}
-
-	public void setContaCol(String contaCol) {
-		this.contaCol = contaCol;
-	}
-
-	public Funcionario getCodigoFuncionario() {
+	public int getCodigoFuncionario() {
 		return codigoFuncionario;
 	}
 
-	public void setCodigoFuncionario(Funcionario codigoFuncionario) {
+	public void setCodigoFuncionario(int codigoFuncionario) {
 		this.codigoFuncionario = codigoFuncionario;
+	}
+	
+	public int getContaTipo() {
+		return contaTipo;
+	}
+
+	public void setContaTipo(int contaTipo) {
+		this.contaTipo = contaTipo;
 	}
 	
 	//comentario

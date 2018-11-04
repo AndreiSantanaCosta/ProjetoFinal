@@ -33,8 +33,8 @@ public class TelaLoginMDI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaLoginMDI frame = new TelaLoginMDI();
-					frame.setVisible(true);
+					//TelaLoginMDI frame = new TelaLoginMDI();
+					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -56,7 +56,7 @@ public class TelaLoginMDI extends JFrame {
 		
 	}*/
 	
-	public TelaLoginMDI(/*Funcionario funcionario*/) {
+	public TelaLoginMDI(Funcionario funcionario) {
 		this.funcionario = funcionario;
 		setTitle("Gerenciamento de Solicita\u00E7\u00F5es");
 		setResizable(false);
@@ -81,7 +81,7 @@ public class TelaLoginMDI extends JFrame {
 		mntmPrestarContas.setBackground(Color.WHITE);
 		mntmPrestarContas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new TelaPrestarContas(/*funcionario*/).setVisible(true);
+				new TelaPrestarContas(funcionario).setVisible(true);
 			}
 		});
 		mntmPrestarContas.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/icons 1/book_open.png")));

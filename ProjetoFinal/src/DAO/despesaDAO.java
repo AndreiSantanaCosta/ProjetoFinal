@@ -14,11 +14,15 @@ import SistemaCorporativo.ContaDespesa;
 
 public class despesaDAO {
 	
-	private ArrayList<ContaDespesa> ArrayDespesas;
-	ContaDespesa despesa;
+	private ArrayList<ContaDespesa> ArrayDespesas = new ArrayList<ContaDespesa>();
+	ContaDespesa despesaA;
 	
 	public void saveDespesaArrayList(ContaDespesa despesa) {
-		ArrayDespesas.add(despesa);
+		try{
+			ArrayDespesas.add(despesa);
+		}catch(Exception e) {
+			JOptionPane.showMessageDialog(null, e);
+		}
 	}
 	
 	public void inserirDespesa() {
@@ -33,13 +37,14 @@ public class despesaDAO {
 					+ "despesa_conta_id, despesa_categoria)"
 								+ "VALUES(?,?,?,?,?)";
 			
-			for(ContaDespesa despesaArray : ArrayDespesas) {
+			JOptionPane.showMessageDialog(null,	ArrayDespesas.size());
+			for(int i = 0; i < ArrayDespesas.size(); i++ ) {
 				stmt = con.prepareStatement(sql);
-				stmt.setString(1, despesaArray.getDespesaData());
-				stmt.setDouble(2, despesaArray.getDespesaValor());
-				stmt.setString(3, despesaArray.getDespesaDescricao());
-				stmt.setInt(4, despesa.getContaId());
-				stmt.setInt(5, despesaArray.getCategoria());
+				stmt.setString(1, ArrayDespesas.get(i).getDespesaData());
+				stmt.setDouble(2, ArrayDespesas.get(i).getDespesaValor());
+				stmt.setString(3, ArrayDespesas.get(i).getDespesaDescricao());
+				stmt.setInt(4, despesaA.getContaId());
+				stmt.setInt(5, ArrayDespesas.get(i).getCategoria());
 				stmt.executeQuery();
 			}
 			conection.closeConexaoMYSQL();
@@ -52,15 +57,15 @@ public class despesaDAO {
 	private void getCodigoConta() {
 		Conexao conection = new Conexao();
 		PreparedStatement stmt = null;		
-		despesa = new ContaDespesa();
-			String sql = "SELECT conta_id FROM prestar_conta ORDER BY conta_id DESC LIMIT 0,1";
+		despesaA = new ContaDespesa();
+			String sql = "SELECT conta_id FROM presta_conta ORDER BY conta_id DESC LIMIT 0,1";
 		
 		try {
 			Connection con = conection.getConexaoMYSQL();
 			stmt = con.prepareStatement(sql);
 			ResultSet result = stmt.executeQuery();
 			while(result.next()) {
-				despesa.setContaId(result.getInt(1));
+				despesaA.setContaId(result.getInt(1));
 			}
 			
 		}catch(SQLException e) {

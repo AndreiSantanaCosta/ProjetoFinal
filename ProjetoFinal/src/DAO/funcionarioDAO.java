@@ -57,7 +57,7 @@ public class funcionarioDAO {
 			stmt.setInt(8, funcionario.getPerfilFuncionario());
 			stmt.setString(9, funcionario.getEmail());
 			stmt.execute();
-			stmt.close();
+			con.close();
 			JOptionPane.showMessageDialog(null, "Registrado com Sucesso");
 			conection.closeConexaoMYSQL();
 		}catch(SQLException e) {

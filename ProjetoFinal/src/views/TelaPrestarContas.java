@@ -17,9 +17,11 @@ import javax.swing.JTextArea;
 import com.toedter.calendar.JCalendar;
 import com.toedter.calendar.JDayChooser;
 
+import DAO.contaDAO;
 import DAO.despesaDAO;
 import SistemaCorporativo.ContaDespesa;
 import SistemaCorporativo.Funcionario;
+import SistemaCorporativo.PrestarContas;
 
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -37,7 +39,8 @@ public class TelaPrestarContas extends JFrame {
 	private JPanel contentPane;
 	private JTextField txtNumeroDoCartao;
 	private JTextField txtValorPago;
-	private despesaDAO despesaD;
+	private despesaDAO despesaD = new despesaDAO();;
+	private contaDAO contaDAO;
 	/**
 	 * Launch the application.
 	 */
@@ -61,7 +64,7 @@ public class TelaPrestarContas extends JFrame {
 		
 	}*/
 	
-	public TelaPrestarContas(/*Funcionario funcionario*/) {
+	public TelaPrestarContas(Funcionario funcionario) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 591, 450);
 		contentPane = new JPanel();
@@ -123,13 +126,12 @@ public class TelaPrestarContas extends JFrame {
 		label_12.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
-				//ContaDespesa despesa = new ContaDespesa(data, Double.parseDouble(txtValorPago.getText()), textDecricao.getText(), (comboCategoria.getSelectedIndex()+1));
-				//despesaD = new despesaDAO();
-				//despesaD.saveDespesaArrayList(despesa);
+				ContaDespesa Cdespesa = new ContaDespesa("2018-01-01", Double.parseDouble(txtValorPago.getText()), textDecricao.getText(), (comboCategoria.getSelectedIndex()+1));
+				despesaD.saveDespesaArrayList(Cdespesa);
 				
 				String quebraLinha = "------------FIM DO PEDIDO------------";
 				txtDespesasLançadas.setText("Data: " + data + "\n Valor Pago: " + txtValorPago.getText()
-						+ "\n Categoria: " + comboCategoria.getSelectedIndex() + "\n Descrição: " + textDecricao.getText() + "\n" + quebraLinha);
+						+ "\n Categoria: " + comboCategoria.getSelectedIndex() + "\n Descrição: " + Cdespesa.getDespesaDescricao() + "\n" + quebraLinha);
 			}
 		});
 		label_12.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -187,6 +189,19 @@ public class TelaPrestarContas extends JFrame {
 		lblCadastrarConta.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) {
+				String cartao = txtNumeroDoCartao.getText();
+				String contaMes = "2018-01-01";
+				int codigoFunc = funcionario.getCodigoFuncionario();
+				//Status da conta e nao aprovado
+				int status = 2;
+				//Tipo da conta e prestar conta
+				int contaTipo = 1;
+				PrestarContas conta = new PrestarContas(cartao, contaMes, status, codigoFunc, contaTipo);
+				contaDAO = new contaDAO();
+				if(contaDAO.cadastrarConta(conta) == true){
+					despesaD = new despesaDAO();
+					despesaD.inserirDespesa();
+				}
 			}
 		});
 		lblCadastrarConta.setForeground(Color.WHITE);
