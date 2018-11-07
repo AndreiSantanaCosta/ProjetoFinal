@@ -16,11 +16,15 @@ import java.awt.SystemColor;
 import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JRadioButton;
+import com.toedter.calendar.JDateChooser;
+import javax.swing.JButton;
+import javax.swing.DropMode;
+import javax.swing.JFormattedTextField;
 
 public class TelaReembolso extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtValor;
 
 	/**
 	 * Launch the application.
@@ -42,163 +46,117 @@ public class TelaReembolso extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaReembolso() {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 590, 439);
+		setBounds(100, 100, 644, 453);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JPanel panel = new JPanel();
-		panel.setLayout(null);
-		panel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		panel.setBounds(0, -13, 575, 421);
-		contentPane.add(panel);
-		
-		JPanel panel_1 = new JPanel();
-		panel_1.setLayout(null);
-		panel_1.setBounds(0, 40, 575, 381);
-		panel.add(panel_1);
-		
-		JLabel btnEnviar = new JLabel("");
-		btnEnviar.setIcon(new ImageIcon(TelaReembolso.class.getResource("/icons 1/script_add.png")));
-		btnEnviar.setToolTipText("Enviar");
-		btnEnviar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnEnviar.setBounds(463, 185, 23, 16);
-		panel_1.add(btnEnviar);
-		
-		JLabel btnLimparCampo = new JLabel("");
-		btnLimparCampo.setIcon(new ImageIcon(TelaReembolso.class.getResource("/Icones/sair-menu-2.png")));
-		btnLimparCampo.setToolTipText("Limpar Campos");
-		btnLimparCampo.setBounds(493, 187, 23, 14);
-		panel_1.add(btnLimparCampo);
+		JPanel txtValorPago = new JPanel();
+		txtValorPago.setLayout(null);
+		txtValorPago.setBackground(Color.DARK_GRAY);
+		txtValorPago.setBounds(0, 0, 694, 421);
+		contentPane.add(txtValorPago);
 		
 		JLabel label = new JLabel("Data:");
+		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		label.setBounds(210, 11, 43, 14);
-		panel_1.add(label);
+		label.setBounds(235, 78, 43, 14);
+		txtValorPago.add(label);
 		
 		JComboBox comboCategoria = new JComboBox();
-		comboCategoria.setModel(new DefaultComboBoxModel(new String[] {"Refei\u00E7\u00E3o", "Taxi", "Estacionamento", "Brinde", "Passagens", "Hospedagem"}));
 		comboCategoria.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		comboCategoria.setBackground(Color.WHITE);
-		comboCategoria.setBounds(461, 52, 104, 20);
-		panel_1.add(comboCategoria);
+		comboCategoria.setBounds(60, 186, 130, 23);
+		txtValorPago.add(comboCategoria);
 		
-		JTextArea textArea = new JTextArea();
-		textArea.setToolTipText("Fa\u00E7a uma descri\u00E7\u00E3o sucinta.");
-		textArea.setTabSize(6);
-		textArea.setForeground(Color.WHITE);
-		textArea.setBackground(Color.DARK_GRAY);
-		textArea.setBounds(413, 115, 152, 59);
-		panel_1.add(textArea);
+		JTextArea txtDescricao = new JTextArea();
+		txtDescricao.setToolTipText("Fa\u00E7a uma descri\u00E7\u00E3o sucinta.");
+		txtDescricao.setTabSize(6);
+		txtDescricao.setLineWrap(true);
+		txtDescricao.setForeground(Color.DARK_GRAY);
+		txtDescricao.setBackground(Color.WHITE);
+		txtDescricao.setBounds(410, 103, 152, 59);
+		txtValorPago.add(txtDescricao);
 		
-		JTextArea textArea_1 = new JTextArea();
-		textArea_1.setForeground(Color.WHITE);
-		textArea_1.setEditable(false);
-		textArea_1.setBackground(Color.DARK_GRAY);
-		textArea_1.setBounds(195, 220, 370, 145);
-		panel_1.add(textArea_1);
+		JTextArea txtContas = new JTextArea();
+		txtContas.setRows(100);
+		txtContas.setForeground(Color.DARK_GRAY);
+		txtContas.setEditable(false);
+		txtContas.setBackground(Color.WHITE);
+		txtContas.setBounds(60, 289, 502, 112);
+		txtValorPago.add(txtContas);
 		
-		JCalendar calendar = new JCalendar();
-		calendar.getDayChooser().getDayPanel().setBackground(SystemColor.menu);
-		calendar.getDayChooser().setBackground(Color.DARK_GRAY);
-		calendar.getYearChooser().getSpinner().setForeground(Color.WHITE);
-		calendar.getYearChooser().getSpinner().setBackground(Color.DARK_GRAY);
-		calendar.getMonthChooser().getComboBox().setForeground(Color.BLACK);
-		calendar.getMonthChooser().getComboBox().setBackground(SystemColor.menu);
-		calendar.setBounds(200, 36, 178, 145);
-		panel_1.add(calendar);
+		JLabel enviar = new JLabel("");
+		enviar.setIcon(new ImageIcon(TelaReembolso.class.getResource("/icons 1/page_add.png")));
+		enviar.setToolTipText("Enviar");
+		enviar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		enviar.setBounds(300, 228, 23, 16);
+		txtValorPago.add(enviar);
 		
-		txtValor = new JTextField();
-		txtValor.setColumns(16);
-		txtValor.setBounds(460, 11, 105, 20);
-		panel_1.add(txtValor);
+		JLabel limpar = new JLabel("");
+		limpar.setIcon(new ImageIcon(TelaReembolso.class.getResource("/icons 1/cancel.png")));
+		limpar.setToolTipText("Limpar Campos");
+		limpar.setBounds(333, 230, 23, 14);
+		txtValorPago.add(limpar);
 		
-		JLabel label_1 = new JLabel("");
-		label_1.setToolTipText("Enviar");
-		label_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		label_1.setBounds(479, 180, 23, 16);
-		panel_1.add(label_1);
+		JLabel label_3 = new JLabel("M\u00EAs de Refer\u00EAncia:");
+		label_3.setForeground(Color.WHITE);
+		label_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		label_3.setBounds(50, 78, 120, 14);
+		txtValorPago.add(label_3);
 		
-		JLabel label_2 = new JLabel("");
-		label_2.setToolTipText("Limpar Campos");
-		label_2.setBounds(509, 182, 23, 14);
-		panel_1.add(label_2);
+		JComboBox comboMesReferencia = new JComboBox();
+		comboMesReferencia.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		comboMesReferencia.setBackground(Color.WHITE);
+		comboMesReferencia.setBounds(60, 103, 130, 23);
+		txtValorPago.add(comboMesReferencia);
 		
-		JPanel panel_2 = new JPanel();
-		panel_2.setLayout(null);
-		panel_2.setBackground(Color.DARK_GRAY);
-		panel_2.setBounds(0, -41, 186, 423);
-		panel_1.add(panel_2);
+		JLabel label_5 = new JLabel("Cadastrar Conta");
+		label_5.setIcon(new ImageIcon(TelaReembolso.class.getResource("/icons 1/layout_add.png")));
+		label_5.setToolTipText("Cadastrar Conta");
+		label_5.setForeground(Color.WHITE);
+		label_5.setFont(new Font("Tahoma", Font.BOLD, 11));
+		label_5.setBounds(267, 255, 120, 23);
+		txtValorPago.add(label_5);
 		
-		JLabel lblReembolso = new JLabel("Pedido de Reembolso");
-		lblReembolso.setIcon(new ImageIcon(TelaReembolso.class.getResource("/icons 1/money_add.png")));
-		lblReembolso.setForeground(Color.WHITE);
-		lblReembolso.setFont(new Font("Arial", Font.BOLD, 14));
-		lblReembolso.setBounds(10, 70, 194, 23);
-		panel_2.add(lblReembolso);
+		JLabel label_6 = new JLabel("Valor Pago:");
+		label_6.setForeground(Color.WHITE);
+		label_6.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		label_6.setBounds(230, 159, 76, 17);
+		txtValorPago.add(label_6);
 		
-		JLabel label_4 = new JLabel("M\u00EAs de Refer\u00EAncia:");
-		label_4.setForeground(Color.WHITE);
-		label_4.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		label_4.setBounds(10, 140, 120, 14);
-		panel_2.add(label_4);
+		JLabel label_7 = new JLabel("Categoria:");
+		label_7.setForeground(Color.WHITE);
+		label_7.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		label_7.setBounds(65, 158, 76, 17);
+		txtValorPago.add(label_7);
 		
-		JComboBox comboMesDeReferencia = new JComboBox();
-		comboMesDeReferencia.setModel(new DefaultComboBoxModel(new String[] {"Janeiro", "Fevereiro", "Mar\u00E7o", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"}));
-		comboMesDeReferencia.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		comboMesDeReferencia.setBackground(Color.WHITE);
-		comboMesDeReferencia.setBounds(29, 161, 130, 20);
-		panel_2.add(comboMesDeReferencia);
-		
-		JLabel lblCadastrarPedido = new JLabel("Cadastrar Pedido");
-		lblCadastrarPedido.setIcon(new ImageIcon(TelaReembolso.class.getResource("/icons 1/layout_add.png")));
-		lblCadastrarPedido.setToolTipText("Cadastrar Pedido");
-		lblCadastrarPedido.setForeground(Color.WHITE);
-		lblCadastrarPedido.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblCadastrarPedido.setBounds(29, 332, 120, 23);
-		panel_2.add(lblCadastrarPedido);
-		
-		JLabel lblValor = new JLabel("Valor:");
-		lblValor.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblValor.setBounds(413, 14, 43, 17);
-		panel_1.add(lblValor);
-		
-		JLabel label_8 = new JLabel("Categoria:");
+		JLabel label_8 = new JLabel("Descri\u00E7\u00E3o:");
+		label_8.setForeground(Color.WHITE);
 		label_8.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		label_8.setBounds(386, 52, 76, 17);
-		panel_1.add(label_8);
+		label_8.setBounds(410, 78, 76, 17);
+		txtValorPago.add(label_8);
 		
-		JLabel label_9 = new JLabel("Descri\u00E7\u00E3o:");
-		label_9.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		label_9.setBounds(386, 87, 76, 17);
-		panel_1.add(label_9);
+		JLabel icone_sair = new JLabel("");
+		icone_sair.setIcon(new ImageIcon(TelaReembolso.class.getResource("/Icones/sair-menu-2.png")));
+		icone_sair.setBounds(20, 22, 22, 21);
+		txtValorPago.add(icone_sair);
 		
-		JLabel txtDescricao = new JLabel("");
-		txtDescricao.setIcon(new ImageIcon(TelaReembolso.class.getResource("/bg2.jpg")));
-		txtDescricao.setBounds(20, 0, 578, 382);
-		panel_1.add(txtDescricao);
+		JLabel icone_usuario = new JLabel("");
+		icone_usuario.setIcon(new ImageIcon(TelaReembolso.class.getResource("/Icones/user.png")));
+		icone_usuario.setBounds(300, 11, 93, 71);
+		txtValorPago.add(icone_usuario);
 		
-		JPanel panel_3 = new JPanel();
-		panel_3.setLayout(null);
-		panel_3.setBackground(Color.DARK_GRAY);
-		panel_3.setBounds(0, 0, 186, 40);
-		panel.add(panel_3);
+		JDateChooser dateChooser = new JDateChooser();
+		dateChooser.setBounds(230, 103, 130, 23);
+		txtValorPago.add(dateChooser);
 		
-		JLabel label_11 = new JLabel("");
-		label_11.setBounds(10, 11, 22, 21);
-		panel_3.add(label_11);
-		
-		JLabel label_12 = new JLabel("Despesas");
-		label_12.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		label_12.setBounds(320, 11, 89, 23);
-		panel.add(label_12);
-		
-		JLabel label_13 = new JLabel("");
-		label_13.setIcon(new ImageIcon(TelaReembolso.class.getResource("/bg2.jpg")));
-		label_13.setBounds(186, 0, 389, 40);
-		panel.add(label_13);
+		JFormattedTextField formattedTextField = new JFormattedTextField();
+		formattedTextField.setBounds(235, 186, 125, 23);
+		txtValorPago.add(formattedTextField);
 		
 	}
 }

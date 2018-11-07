@@ -25,14 +25,13 @@ import java.awt.event.ActionEvent;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.SwingConstants;
+import javax.swing.JFormattedTextField;
 
 public class TelaCadastrarFuncionario extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtNome;
-	private JTextField textField_1;
-	private JTextField txtCpf;
-	private JTextField txtRg;
+	private JTextField txtIdade;
 	private JTextField txtEmail;
 	private JTextField txtSenha;
 	private funcionarioDAO funcionarioD;
@@ -129,20 +128,33 @@ public class TelaCadastrarFuncionario extends JFrame {
 		contentPane.add(txtNome);
 		txtNome.setColumns(10);
 		
+		JFormattedTextField txtRg = new JFormattedTextField();
+		txtRg.setBounds(30, 123, 100, 20);
+		try {
+            txtRg.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##.###.###-#")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+		contentPane.add(txtRg);
+		
 		JLabel lblIdade = new JLabel("Idade:");
 		lblIdade.setFont(new Font("Arial", Font.BOLD, 12));
 		lblIdade.setBounds(140, 298, 55, 14);
 		contentPane.add(lblIdade);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(150, 315, 30, 20);
-		contentPane.add(textField_1);
-		
-		txtCpf = new JTextField();
-		txtCpf.setColumns(10);
+		JFormattedTextField txtCpf = new JFormattedTextField();
+		try {
+            txtCpf.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###-##")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 		txtCpf.setBounds(30, 75, 100, 20);
 		contentPane.add(txtCpf);
+		
+		txtIdade = new JTextField();
+		txtIdade.setColumns(10);
+		txtIdade.setBounds(150, 315, 30, 20);
+		contentPane.add(txtIdade);
 		
 		JLabel lblCpf = new JLabel("CPF:");
 		lblCpf.setFont(new Font("Arial", Font.BOLD, 12));
@@ -153,11 +165,6 @@ public class TelaCadastrarFuncionario extends JFrame {
 		lblRg.setFont(new Font("Arial", Font.BOLD, 12));
 		lblRg.setBounds(20, 103, 55, 14);
 		contentPane.add(lblRg);
-		
-		txtRg = new JTextField();
-		txtRg.setColumns(10);
-		txtRg.setBounds(30, 120, 100, 20);
-		contentPane.add(txtRg);
 		
 		JLabel lblPerfilFuncionrio = new JLabel("Perfil Funcion\u00E1rio:");
 		lblPerfilFuncionrio.setFont(new Font("Arial", Font.BOLD, 12));

@@ -50,7 +50,7 @@ public class TelaLoginPrincipal extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaLoginPrincipal() {
+	public void configuracoesTela() {
 		setTitle("Login");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,12 +59,32 @@ public class TelaLoginPrincipal extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		this.setLocationRelativeTo(null); 
-		
+		this.setLocationRelativeTo(null);
+	}
+	
+	public JPanel criaPanel() {
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);
 		panel.setBounds(0, 0, 444, 79);
 		contentPane.add(panel);
+		return panel;
+	}
+	
+	public void criaLabel(String titulo, int boundY, int boundX, int boundW, int boundH) {
+		JLabel lblNewLabel = new JLabel(titulo);
+		lblNewLabel.setBounds(10, 129, 71, 11);
+		contentPane.add(lblNewLabel);
+	}
+	
+	public TelaLoginPrincipal() {
+		
+		 configuracoesTela();
+		
+		JPanel panel = criaPanel();
+		
+		//criaLabel("Desgraça",14,13,12,11);
+		//criaLabel("Filha da puta", 20, 40, 50, 60);
+		
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(TelaLoginPrincipal.class.getResource("/Icones/user.png")));
@@ -83,13 +103,7 @@ public class TelaLoginPrincipal extends JFrame {
 		contentPane.add(inputLogin);
 		inputLogin.setColumns(10);
 		
-		JLabel lblSenha = new JLabel("Senha:");
-		lblSenha.setEnabled(false);
-		lblSenha.setIcon(new ImageIcon(TelaLoginPrincipal.class.getResource("/Icones/login.png")));
-		lblSenha.setFont(new Font("Arial", Font.BOLD, 14));
-		lblSenha.setBackground(Color.DARK_GRAY);
-		lblSenha.setBounds(112, 151, 81, 29);
-		contentPane.add(lblSenha);
+		
 		
 		inputSenha = new JPasswordField();
 		inputSenha.setBounds(150, 191, 120, 20);
@@ -136,6 +150,14 @@ public class TelaLoginPrincipal extends JFrame {
 				}
 			}
 		});
+		
+		JLabel lblSenha = new JLabel("Senha:");
+		lblSenha.setEnabled(false);
+		lblSenha.setIcon(new ImageIcon(TelaLoginPrincipal.class.getResource("/Icones/login.png")));
+		lblSenha.setFont(new Font("Arial", Font.BOLD, 14));
+		lblSenha.setBackground(Color.DARK_GRAY);
+		lblSenha.setBounds(112, 151, 81, 29);
+		contentPane.add(lblSenha);
 		btnLogin.setForeground(Color.LIGHT_GRAY);
 		btnLogin.setBackground(Color.DARK_GRAY);
 		btnLogin.setFont(new Font("Arial", Font.BOLD, 14));
@@ -149,10 +171,11 @@ public class TelaLoginPrincipal extends JFrame {
 		btnEsqueciMinhaSenha.setBounds(211, 226, 89, 23);
 		contentPane.add(btnEsqueciMinhaSenha);
 		
-		JLabel label_1 = new JLabel("");
-		label_1.setBackground(Color.DARK_GRAY);
-		label_1.setIcon(new ImageIcon(TelaLoginPrincipal.class.getResource("/bg2.jpg")));
-		label_1.setBounds(0, 78, 444, 193);
-		contentPane.add(label_1);
+		JLabel background = new JLabel("");
+		background.setBackground(Color.DARK_GRAY);
+		background.setIcon(new ImageIcon(TelaLoginPrincipal.class.getResource("/bg2.jpg")));
+		background.setBounds(0, 78, 444, 193);
+		contentPane.add(background);
+		
 	}
 }
