@@ -1,0 +1,2 @@
+ALTER TABLE `sistemacorporativo`.`funcionario` 
+CHANGE COLUMN `fun_data_cadastro` `fun_data_cadastro` DATETIME NOT NULL DEFAULT NOW() ;
