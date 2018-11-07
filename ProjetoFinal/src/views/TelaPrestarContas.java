@@ -199,7 +199,6 @@ public class TelaPrestarContas extends JFrame {
 				PrestarContas conta = new PrestarContas(cartao, contaMes, status, codigoFunc, contaTipo);
 				contaDAO = new contaDAO();
 				if(contaDAO.cadastrarConta(conta) == true){
-					despesaD = new despesaDAO();
 					despesaD.inserirDespesa();
 				}
 			}

@@ -15,8 +15,7 @@ import SistemaCorporativo.ContaDespesa;
 public class despesaDAO {
 	
 	private ArrayList<ContaDespesa> ArrayDespesas = new ArrayList<ContaDespesa>();
-	ContaDespesa despesaA;
-	
+	ContaDespesa despesaA = new ContaDespesa();
 	public void saveDespesaArrayList(ContaDespesa despesa) {
 		try{
 			ArrayDespesas.add(despesa);
@@ -34,10 +33,9 @@ public class despesaDAO {
 			
 			//=> Query de INSERT
 			String sql = "INSERT INTO conta_despesa (despesa_data, despesa_valor, despesa_descricao,"
-					+ "despesa_conta_id, despesa_categoria)"
+					+ "despesa_conta_id, categoria_id)"
 								+ "VALUES(?,?,?,?,?)";
 			
-			JOptionPane.showMessageDialog(null,	ArrayDespesas.size());
 			for(int i = 0; i < ArrayDespesas.size(); i++ ) {
 				stmt = con.prepareStatement(sql);
 				stmt.setString(1, ArrayDespesas.get(i).getDespesaData());
@@ -45,7 +43,7 @@ public class despesaDAO {
 				stmt.setString(3, ArrayDespesas.get(i).getDespesaDescricao());
 				stmt.setInt(4, despesaA.getContaId());
 				stmt.setInt(5, ArrayDespesas.get(i).getCategoria());
-				stmt.executeQuery();
+				stmt.execute();
 			}
 			conection.closeConexaoMYSQL();
 		}catch(Exception e) {
@@ -57,7 +55,6 @@ public class despesaDAO {
 	private void getCodigoConta() {
 		Conexao conection = new Conexao();
 		PreparedStatement stmt = null;		
-		despesaA = new ContaDespesa();
 			String sql = "SELECT conta_id FROM presta_conta ORDER BY conta_id DESC LIMIT 0,1";
 		
 		try {
