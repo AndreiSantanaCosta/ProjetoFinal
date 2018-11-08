@@ -70,21 +70,17 @@ public class TelaLoginPrincipal extends JFrame {
 		return panel;
 	}
 	
-	public void criaLabel(String titulo, int boundY, int boundX, int boundW, int boundH) {
+	/*public void criaLabel(String titulo, int boundY, int boundX, int boundW, int boundH) {
 		JLabel lblNewLabel = new JLabel(titulo);
 		lblNewLabel.setBounds(10, 129, 71, 11);
 		contentPane.add(lblNewLabel);
-	}
+	}*/
 	
 	public TelaLoginPrincipal() {
 		
-		 configuracoesTela();
+		configuracoesTela();
 		
 		JPanel panel = criaPanel();
-		
-		//criaLabel("Desgraça",14,13,12,11);
-		//criaLabel("Filha da puta", 20, 40, 50, 60);
-		
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(TelaLoginPrincipal.class.getResource("/Icones/user.png")));
@@ -102,9 +98,7 @@ public class TelaLoginPrincipal extends JFrame {
 		inputLogin.setBounds(150, 120, 120, 20);
 		contentPane.add(inputLogin);
 		inputLogin.setColumns(10);
-		
-		
-		
+			
 		inputSenha = new JPasswordField();
 		inputSenha.setBounds(150, 191, 120, 20);
 		contentPane.add(inputSenha);
@@ -165,6 +159,11 @@ public class TelaLoginPrincipal extends JFrame {
 		contentPane.add(btnLogin);
 		
 		JButton btnEsqueciMinhaSenha = new JButton("Ajuda");
+		btnEsqueciMinhaSenha.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JOptionPane.showMessageDialog(null, "Problemas em realizar o seu acesso? lembre-se seu login é composto por ### e sua senha por ###");
+			}
+		});
 		btnEsqueciMinhaSenha.setForeground(Color.LIGHT_GRAY);
 		btnEsqueciMinhaSenha.setFont(new Font("Arial", Font.BOLD, 12));
 		btnEsqueciMinhaSenha.setBackground(Color.DARK_GRAY);

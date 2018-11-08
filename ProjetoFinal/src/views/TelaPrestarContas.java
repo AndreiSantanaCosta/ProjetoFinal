@@ -35,12 +35,12 @@ import java.awt.Scrollbar;
 import javax.swing.JRadioButton;
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JScrollBar;
+import javax.swing.JFormattedTextField;
 
 public class TelaPrestarContas extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtNumeroDoCartao;
-	private JTextField txtValorPago;
 	private despesaDAO despesaD = new despesaDAO();;
 	private contaDAO contaDAO;
 	/**
@@ -65,8 +65,7 @@ public class TelaPrestarContas extends JFrame {
 	/*public TelaPrestarContas() {
 		
 	}*/
-	
-	public TelaPrestarContas(Funcionario funcionario) {
+	public void configuracoesTela(){
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 660, 450);
@@ -74,13 +73,43 @@ public class TelaPrestarContas extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-
+		this.setLocationRelativeTo(null); /* CENTRALIZA O CONTAINER */
+	}
+	
+	public void verificaNulos(int valorPago, Object data, int numeroDoCartao, String descricao) {
+		if(valorPago != 0 || data != null || numeroDoCartao != 0 || descricao != null) {
+			JOptionPane.showMessageDialog(null,"nao tem nulos");
+		}else if(valorPago == 0){
+			
+		}else if(numeroDoCartao == 0) {
+			txtNumeroDoCartao.grabFocus();
+		}else if(data == null) {
+			
+		}else if(descricao == null) {
+			
+		}
+	}
+	
+	public TelaPrestarContas(Funcionario funcionario) {
+		configuracoesTela();
+		
+		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.DARK_GRAY);
 		panel_1.setBounds(0, 0, 694, 421);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 
+		JFormattedTextField txtValorPago = new JFormattedTextField();
+		txtValorPago.setBounds(410, 206, 152, 23);
+		try {
+            txtValorPago.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###R$")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+		int valorPago = Integer.parseInt(txtValorPago.getText().replace(".","").replace("R$",""));
+		panel_1.add(txtValorPago);
+		
 		JLabel label_4 = new JLabel("Data:");
 		label_4.setForeground(Color.WHITE);
 		label_4.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -95,100 +124,48 @@ public class TelaPrestarContas extends JFrame {
 		comboCategoria.setBounds(230, 176, 130, 23);
 		panel_1.add(comboCategoria);
 
-		JTextArea textDecricao = new JTextArea();
-		textDecricao.setLineWrap(true);
-		textDecricao.setToolTipText("Fa\u00E7a uma descri\u00E7\u00E3o sucinta.");
-		textDecricao.setTabSize(6);
-		textDecricao.setForeground(Color.DARK_GRAY);
-		textDecricao.setBackground(Color.WHITE);
-		textDecricao.setBounds(410, 103, 152, 59);
-		panel_1.add(textDecricao);
-
 		JTextArea txtDespesasLançadas = new JTextArea();
 		txtDespesasLançadas.setForeground(Color.DARK_GRAY);
 		txtDespesasLançadas.setBackground(Color.WHITE);
 		txtDespesasLançadas.setEditable(false);
 		txtDespesasLançadas.setBounds(60, 289, 502, 112);
 		panel_1.add(txtDespesasLançadas);
-
-		txtValorPago = new JTextField();
-		txtValorPago.setColumns(16);
-		txtValorPago.setBounds(416, 206, 146, 23);
-		panel_1.add(txtValorPago);
-
-		JLabel label_12 = new JLabel("");
-		label_12.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				ContaDespesa Cdespesa = new ContaDespesa("2018-01-01", Double.parseDouble(txtValorPago.getText()), textDecricao.getText(), (comboCategoria.getSelectedIndex()+1));
-				despesaD.saveDespesaArrayList(Cdespesa);
 				
-				String quebraLinha = "------------FIM DO PEDIDO------------";
-				txtDespesasLançadas.setText("Data: " + /*data +*/ "\n Valor Pago: " + txtValorPago.getText()
-						+ "\n Categoria: " + comboCategoria.getSelectedIndex() + "\n Descrição: " + Cdespesa.getDespesaDescricao() + "\n" + quebraLinha);
-			}
-		});
-		label_12.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		label_12.setToolTipText("Enviar");
-		label_12.setIcon(new ImageIcon(TelaPrestarContas.class.getResource("/icons 1/script_add.png")));
-		label_12.setBounds(300, 228, 23, 16);
-		panel_1.add(label_12);
-
-		JLabel label_10 = new JLabel("");
-		label_10.setToolTipText("Limpar Campos");
-		label_10.setIcon(new ImageIcon(TelaPrestarContas.class.getResource("/icons 1/cancel.png")));
-		label_10.setBounds(333, 230, 23, 14);
-		panel_1.add(label_10);
+		JTextArea textDescricao = new JTextArea();
+		textDescricao.setLineWrap(true);
+		textDescricao.setToolTipText("Fa\u00E7a uma descri\u00E7\u00E3o sucinta.");
+		textDescricao.setTabSize(6);
+		textDescricao.setForeground(Color.DARK_GRAY);
+		textDescricao.setBackground(Color.WHITE);
+		textDescricao.setBounds(410, 103, 152, 59);
+		panel_1.add(textDescricao);
 		
-				JLabel label_1 = new JLabel("M\u00EAs de Refer\u00EAncia:");
-				label_1.setBounds(50, 78, 120, 14);
-				panel_1.add(label_1);
-				label_1.setForeground(Color.WHITE);
-				label_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel label_1 = new JLabel("M\u00EAs de Refer\u00EAncia:");
+		label_1.setBounds(50, 78, 120, 14);
+		panel_1.add(label_1);
+		label_1.setForeground(Color.WHITE);
+		label_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	
 		
-				JComboBox comboMesReferencia = new JComboBox();
-				comboMesReferencia.setBounds(60, 103, 130, 23);
-				panel_1.add(comboMesReferencia);
-				comboMesReferencia.setBackground(Color.WHITE);
-				comboMesReferencia.setModel(new DefaultComboBoxModel(new String[] { "Janeiro", "Fevereiro", "Mar\u00E7o",
-						"Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" }));
-				comboMesReferencia.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-				JLabel label_2 = new JLabel("Numero do Cart\u00E3o:");
-				label_2.setBounds(50, 151, 120, 14);
-				panel_1.add(label_2);
-				label_2.setForeground(Color.WHITE);
-				label_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		
-				txtNumeroDoCartao = new JTextField();
-				txtNumeroDoCartao.setBounds(60, 176, 130, 23);
-				panel_1.add(txtNumeroDoCartao);
-				txtNumeroDoCartao.setColumns(16);
-		
-		JLabel lblCadastrarConta = new JLabel("Cadastrar Conta");
-		lblCadastrarConta.setBounds(267, 255, 120, 23);
-		panel_1.add(lblCadastrarConta);
-		lblCadastrarConta.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblCadastrarConta.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				String cartao = txtNumeroDoCartao.getText();
-				String contaMes = "2018-01-01";
-				int codigoFunc = funcionario.getCodigoFuncionario();
-				//Status da conta e nao aprovado
-				int status = 2;
-				//Tipo da conta e prestar conta
-				int contaTipo = 1;
-				PrestarContas conta = new PrestarContas(cartao, contaMes, status, codigoFunc, contaTipo);
-				contaDAO = new contaDAO();
-				if(contaDAO.cadastrarConta(conta) == true){
-					despesaD.inserirDespesa();
-				}
-			}
-		});
-		lblCadastrarConta.setForeground(Color.WHITE);
-		lblCadastrarConta.setIcon(new ImageIcon(TelaPrestarContas.class.getResource("/icons 1/layout_add.png")));
-		lblCadastrarConta.setToolTipText("Cadastrar Conta");
+		JComboBox comboMesReferencia = new JComboBox();
+		comboMesReferencia.setBounds(60, 103, 130, 23);
+		panel_1.add(comboMesReferencia);
+		comboMesReferencia.setBackground(Color.WHITE);
+		comboMesReferencia.setModel(new DefaultComboBoxModel(new String[] { "Janeiro", "Fevereiro", "Mar\u00E7o",
+				"Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" }));
+		comboMesReferencia.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	
+		JLabel label_2 = new JLabel("Numero do Cart\u00E3o:");
+		label_2.setBounds(50, 151, 120, 14);
+		panel_1.add(label_2);
+		label_2.setForeground(Color.WHITE);
+		label_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+	
+		txtNumeroDoCartao = new JTextField();
+		txtNumeroDoCartao.setBounds(60, 176, 130, 23);
+		panel_1.add(txtNumeroDoCartao);
+		txtNumeroDoCartao.setColumns(16);
 		
 		JRadioButton rdbtnNaoTenhoCartao = new JRadioButton("N\u00E3o tenho Cart\u00E3o");
 		rdbtnNaoTenhoCartao.setBounds(60, 206, 130, 23);
@@ -225,14 +202,74 @@ public class TelaPrestarContas extends JFrame {
 		});
 		btnSair.setIcon(new ImageIcon(TelaPrestarContas.class.getResource("/Icones/sair-menu-2.png")));
 		
+		JDateChooser calendario = new JDateChooser();
+		calendario.setBounds(230, 103, 130, 23);
+		panel_1.add(calendario);
+		
 		JLabel icone_usuario = new JLabel("");
 		icone_usuario.setIcon(new ImageIcon(TelaPrestarContas.class.getResource("/Icones/user.png")));
 		icone_usuario.setBounds(300, 11, 93, 71);
 		panel_1.add(icone_usuario);
+
+		JLabel btnEnviar = new JLabel("");
+		btnEnviar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				ContaDespesa Cdespesa = new ContaDespesa("2018-01-01", Double.parseDouble(txtValorPago.getText()),
+						textDescricao.getText(), (comboCategoria.getSelectedIndex() + 1));
+				despesaD.saveDespesaArrayList(Cdespesa);
+
+				int valorPago = Integer.parseInt(txtValorPago.getText());
+				Object data = calendario.getDate();
+				int numeroDoCartao = Integer.parseInt(txtNumeroDoCartao.getText());
+				String descricao = textDescricao.getText();
+				
+				//verificaNulos(valorPago, data, numeroDoCartao, descricao);
+				
+				String quebraLinha = "------------FIM DO PEDIDO------------";
+				txtDespesasLançadas.setText("Data: " + data + "\n Valor Pago: " + valorPago
+						+ "\n Categoria: " + comboCategoria.getSelectedIndex() + "\n Descrição: "
+						+ Cdespesa.getDespesaDescricao() + "\n" + quebraLinha);
+				
+			}
+		});
+		btnEnviar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnEnviar.setToolTipText("Enviar");
+		btnEnviar.setIcon(new ImageIcon(TelaPrestarContas.class.getResource("/icons 1/script_add.png")));
+		btnEnviar.setBounds(300, 228, 23, 16);
+		panel_1.add(btnEnviar);
+
+		JLabel btnLimparCampos = new JLabel("");
+		btnLimparCampos.setToolTipText("Limpar Campos");
+		btnLimparCampos.setIcon(new ImageIcon(TelaPrestarContas.class.getResource("/icons 1/cancel.png")));
+		btnLimparCampos.setBounds(333, 230, 23, 14);
+		panel_1.add(btnLimparCampos);
+
+		JLabel btnCadastrarConta = new JLabel("Cadastrar Conta");
+		btnCadastrarConta.setBounds(267, 255, 120, 23);
+		panel_1.add(btnCadastrarConta);
+		btnCadastrarConta.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnCadastrarConta.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				String cartao = txtNumeroDoCartao.getText();
+				String contaMes = "2018-01-01";
+				int codigoFunc = funcionario.getCodigoFuncionario();
+				// Status da conta e nao aprovado
+				int status = 2;
+				// Tipo da conta e prestar conta
+				int contaTipo = 1;
+				PrestarContas conta = new PrestarContas(cartao, contaMes, status, codigoFunc, contaTipo);
+				contaDAO = new contaDAO();
+				if (contaDAO.cadastrarConta(conta) == true) {
+					despesaD.inserirDespesa();
+				}
+			}
+		});
+		btnCadastrarConta.setForeground(Color.WHITE);
+		btnCadastrarConta.setIcon(new ImageIcon(TelaPrestarContas.class.getResource("/icons 1/layout_add.png")));
+		btnCadastrarConta.setToolTipText("Cadastrar Conta");
 		
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(230, 103, 130, 23);
-		panel_1.add(dateChooser);
-		this.setLocationRelativeTo(null); /* CENTRALIZA O CONTAINER */
+		
 	}
 }

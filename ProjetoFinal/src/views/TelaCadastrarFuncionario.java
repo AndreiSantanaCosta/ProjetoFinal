@@ -54,7 +54,7 @@ public class TelaCadastrarFuncionario extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaCadastrarFuncionario() {
+	public void configuracoesTela() {
 		setTitle("Cadastro");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,59 +63,12 @@ public class TelaCadastrarFuncionario extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		this.setLocationRelativeTo(null); /*CENTRALIZA O CONTAINER*/
+	}
+	
+	public TelaCadastrarFuncionario() {
 		
-		JPanel panel = new JPanel();
-		panel.setBackground(Color.DARK_GRAY);
-		panel.setBounds(205, 0, 289, 371);
-		contentPane.add(panel);
-		panel.setLayout(null);
-		
-		JLabel label = new JLabel("");
-		label.setHorizontalAlignment(SwingConstants.CENTER);
-		label.setIcon(new ImageIcon(TelaCadastrarFuncionario.class.getResource("/Icones/user.png")));
-		label.setBounds(99, 132, 97, 72);
-		panel.add(label);
-		
-		JLabel lblCadastro = new JLabel("CADASTRO");
-		lblCadastro.setHorizontalAlignment(SwingConstants.CENTER);
-		lblCadastro.setFont(new Font("Arial", Font.BOLD, 18));
-		lblCadastro.setForeground(Color.WHITE);
-		lblCadastro.setBounds(88, 204, 127, 33);
-		panel.add(lblCadastro);
-		
-		JLabel lblFuncionarios = new JLabel("DE FUNCION\u00C1RIOS");
-		lblFuncionarios.setHorizontalAlignment(SwingConstants.CENTER);
-		lblFuncionarios.setForeground(Color.WHITE);
-		lblFuncionarios.setFont(new Font("Arial", Font.BOLD, 18));
-		lblFuncionarios.setBounds(32, 230, 233, 27);
-		panel.add(lblFuncionarios);
-		
-		JButton btnLimparCampos = new JButton("Limpar \r\nCampos");
-		btnLimparCampos.setForeground(Color.WHITE);
-		btnLimparCampos.setBackground(Color.DARK_GRAY);
-		btnLimparCampos.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnLimparCampos.setBounds(147, 327, 132, 33);
-		panel.add(btnLimparCampos);
-		
-		JLabel label_1 = new JLabel("");
-		label_1.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				dispose();
-			}
-		});
-		label_1.setIcon(new ImageIcon(TelaCadastrarFuncionario.class.getResource("/Icones/sair-menu-2.png")));
-		label_1.setBounds(243, 11, 22, 21);
-		panel.add(label_1);
-		
-		JButton btnRegistrar = new JButton("Registrar");
-		btnRegistrar.setIcon(new ImageIcon(TelaCadastrarFuncionario.class.getResource("/Icones/login.png")));
-		
-		btnRegistrar.setForeground(Color.WHITE);
-		btnRegistrar.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnRegistrar.setBackground(Color.DARK_GRAY);
-		btnRegistrar.setBounds(10, 327, 127, 33);
-		panel.add(btnRegistrar);
+		configuracoesTela();
 		
 		JLabel lblLogin = new JLabel("Nome:");
 		lblLogin.setFont(new Font("Arial", Font.BOLD, 12));
@@ -135,6 +88,7 @@ public class TelaCadastrarFuncionario extends JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+		int rg = Integer.parseInt(txtRg.getText().replace(".","").replace("-",""));
 		contentPane.add(txtRg);
 		
 		JLabel lblIdade = new JLabel("Idade:");
@@ -150,6 +104,8 @@ public class TelaCadastrarFuncionario extends JFrame {
         }
 		txtCpf.setBounds(30, 75, 100, 20);
 		contentPane.add(txtCpf);
+		int cpf = Integer.parseInt(txtCpf.getText().replace(".","").replace("-",""));
+		
 		
 		txtIdade = new JTextField();
 		txtIdade.setColumns(10);
@@ -208,11 +164,59 @@ public class TelaCadastrarFuncionario extends JFrame {
 		comboBoxResponsavel.setBounds(30, 219, 150, 20);
 		contentPane.add(comboBoxResponsavel);
 		
-		JLabel label_2 = new JLabel("");
-		label_2.setIcon(new ImageIcon(TelaCadastrarFuncionario.class.getResource("/bg2.jpg")));
-		label_2.setBounds(0, 0, 206, 371);
-		contentPane.add(label_2);
-		this.setLocationRelativeTo(null); /*CENTRALIZA O CONTAINER*/
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
+		panel.setBounds(205, 0, 289, 371);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JLabel icone_usuario = new JLabel("");
+		icone_usuario.setHorizontalAlignment(SwingConstants.CENTER);
+		icone_usuario.setIcon(new ImageIcon(TelaCadastrarFuncionario.class.getResource("/Icones/user.png")));
+		icone_usuario.setBounds(99, 132, 97, 72);
+		panel.add(icone_usuario);
+		
+		JLabel lblCadastro = new JLabel("CADASTRO");
+		lblCadastro.setHorizontalAlignment(SwingConstants.CENTER);
+		lblCadastro.setFont(new Font("Arial", Font.BOLD, 18));
+		lblCadastro.setForeground(Color.WHITE);
+		lblCadastro.setBounds(88, 204, 127, 33);
+		panel.add(lblCadastro);
+		
+		JLabel lblFuncionarios = new JLabel("DE FUNCION\u00C1RIOS");
+		lblFuncionarios.setHorizontalAlignment(SwingConstants.CENTER);
+		lblFuncionarios.setForeground(Color.WHITE);
+		lblFuncionarios.setFont(new Font("Arial", Font.BOLD, 18));
+		lblFuncionarios.setBounds(32, 230, 233, 27);
+		panel.add(lblFuncionarios);
+		
+		JLabel sair = new JLabel("");
+		sair.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				dispose();
+			}
+		});
+		sair.setIcon(new ImageIcon(TelaCadastrarFuncionario.class.getResource("/Icones/sair-menu-2.png")));
+		sair.setBounds(243, 11, 22, 21);
+		panel.add(sair);
+		
+		JButton btnLimparCampos = new JButton("Limpar \r\nCampos");
+		btnLimparCampos.setForeground(Color.WHITE);
+		btnLimparCampos.setBackground(Color.DARK_GRAY);
+		btnLimparCampos.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnLimparCampos.setBounds(147, 327, 132, 33);
+		panel.add(btnLimparCampos);
+		
+		JButton btnRegistrar = new JButton("Registrar");
+		btnRegistrar.setIcon(new ImageIcon(TelaCadastrarFuncionario.class.getResource("/Icones/login.png")));
+		
+		btnRegistrar.setForeground(Color.WHITE);
+		btnRegistrar.setFont(new Font("Tahoma", Font.BOLD, 11));
+		btnRegistrar.setBackground(Color.DARK_GRAY);
+		btnRegistrar.setBounds(10, 327, 127, 33);
+		panel.add(btnRegistrar);
+		btnRegistrar.grabFocus();
 		
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -228,7 +232,13 @@ public class TelaCadastrarFuncionario extends JFrame {
 				Funcionario funcionario = new Funcionario(nome, senha, email, login, rg, cpf, perfil, responsavel);
 				funcionarioD = new funcionarioDAO();
 				funcionarioD.insertFuncionario(funcionario);
+				
 			}
 		});
+		
+		JLabel background = new JLabel("");
+		background.setIcon(new ImageIcon(TelaCadastrarFuncionario.class.getResource("/bg2.jpg")));
+		background.setBounds(0, 0, 206, 371);
+		contentPane.add(background);
 	}
 }

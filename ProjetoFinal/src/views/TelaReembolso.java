@@ -17,6 +17,8 @@ import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+
 import com.toedter.calendar.JDateChooser;
 import javax.swing.JButton;
 import javax.swing.DropMode;
@@ -45,7 +47,7 @@ public class TelaReembolso extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaReembolso() {
+	public void configuracoesTela() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 644, 453);
@@ -53,24 +55,29 @@ public class TelaReembolso extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+	}
+	
+	public TelaReembolso() {
+		configuracoesTela();
 		
-		JPanel txtValorPago = new JPanel();
-		txtValorPago.setLayout(null);
-		txtValorPago.setBackground(Color.DARK_GRAY);
-		txtValorPago.setBounds(0, 0, 694, 421);
-		contentPane.add(txtValorPago);
+		JPanel background = new JPanel();
+		background.setLayout(null);
+		background.setBackground(Color.DARK_GRAY);
+		background.setBounds(0, 0, 694, 421);
+		contentPane.add(background);
 		
 		JLabel label = new JLabel("Data:");
 		label.setForeground(Color.WHITE);
 		label.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		label.setBounds(235, 78, 43, 14);
-		txtValorPago.add(label);
+		background.add(label);
 		
 		JComboBox comboCategoria = new JComboBox();
+		comboCategoria.setModel(new DefaultComboBoxModel(new String[] {"Refei\u00E7\u00E3o", "Taxi", "Estacionamento", "Brinde", "Passagens", "Hospedagem"}));
 		comboCategoria.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		comboCategoria.setBackground(Color.WHITE);
 		comboCategoria.setBounds(60, 186, 130, 23);
-		txtValorPago.add(comboCategoria);
+		background.add(comboCategoria);
 		
 		JTextArea txtDescricao = new JTextArea();
 		txtDescricao.setToolTipText("Fa\u00E7a uma descri\u00E7\u00E3o sucinta.");
@@ -79,7 +86,9 @@ public class TelaReembolso extends JFrame {
 		txtDescricao.setForeground(Color.DARK_GRAY);
 		txtDescricao.setBackground(Color.WHITE);
 		txtDescricao.setBounds(410, 103, 152, 59);
-		txtValorPago.add(txtDescricao);
+		background.add(txtDescricao);
+		
+		
 		
 		JTextArea txtContas = new JTextArea();
 		txtContas.setRows(100);
@@ -87,32 +96,33 @@ public class TelaReembolso extends JFrame {
 		txtContas.setEditable(false);
 		txtContas.setBackground(Color.WHITE);
 		txtContas.setBounds(60, 289, 502, 112);
-		txtValorPago.add(txtContas);
+		background.add(txtContas);
 		
 		JLabel enviar = new JLabel("");
 		enviar.setIcon(new ImageIcon(TelaReembolso.class.getResource("/icons 1/page_add.png")));
 		enviar.setToolTipText("Enviar");
 		enviar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		enviar.setBounds(300, 228, 23, 16);
-		txtValorPago.add(enviar);
+		background.add(enviar);
 		
 		JLabel limpar = new JLabel("");
 		limpar.setIcon(new ImageIcon(TelaReembolso.class.getResource("/icons 1/cancel.png")));
 		limpar.setToolTipText("Limpar Campos");
 		limpar.setBounds(333, 230, 23, 14);
-		txtValorPago.add(limpar);
+		background.add(limpar);
 		
 		JLabel label_3 = new JLabel("M\u00EAs de Refer\u00EAncia:");
 		label_3.setForeground(Color.WHITE);
 		label_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		label_3.setBounds(50, 78, 120, 14);
-		txtValorPago.add(label_3);
+		background.add(label_3);
 		
 		JComboBox comboMesReferencia = new JComboBox();
+		comboMesReferencia.setModel(new DefaultComboBoxModel(new String[] {"Janeiro", "Fevereiro", "Mar\u00E7o", "Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"}));
 		comboMesReferencia.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		comboMesReferencia.setBackground(Color.WHITE);
 		comboMesReferencia.setBounds(60, 103, 130, 23);
-		txtValorPago.add(comboMesReferencia);
+		background.add(comboMesReferencia);
 		
 		JLabel label_5 = new JLabel("Cadastrar Conta");
 		label_5.setIcon(new ImageIcon(TelaReembolso.class.getResource("/icons 1/layout_add.png")));
@@ -120,43 +130,49 @@ public class TelaReembolso extends JFrame {
 		label_5.setForeground(Color.WHITE);
 		label_5.setFont(new Font("Tahoma", Font.BOLD, 11));
 		label_5.setBounds(267, 255, 120, 23);
-		txtValorPago.add(label_5);
+		background.add(label_5);
 		
 		JLabel label_6 = new JLabel("Valor Pago:");
 		label_6.setForeground(Color.WHITE);
 		label_6.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		label_6.setBounds(230, 159, 76, 17);
-		txtValorPago.add(label_6);
+		background.add(label_6);
 		
 		JLabel label_7 = new JLabel("Categoria:");
 		label_7.setForeground(Color.WHITE);
 		label_7.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		label_7.setBounds(65, 158, 76, 17);
-		txtValorPago.add(label_7);
+		background.add(label_7);
 		
 		JLabel label_8 = new JLabel("Descri\u00E7\u00E3o:");
 		label_8.setForeground(Color.WHITE);
 		label_8.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		label_8.setBounds(410, 78, 76, 17);
-		txtValorPago.add(label_8);
+		background.add(label_8);
 		
 		JLabel icone_sair = new JLabel("");
 		icone_sair.setIcon(new ImageIcon(TelaReembolso.class.getResource("/Icones/sair-menu-2.png")));
 		icone_sair.setBounds(20, 22, 22, 21);
-		txtValorPago.add(icone_sair);
+		background.add(icone_sair);
 		
 		JLabel icone_usuario = new JLabel("");
 		icone_usuario.setIcon(new ImageIcon(TelaReembolso.class.getResource("/Icones/user.png")));
 		icone_usuario.setBounds(300, 11, 93, 71);
-		txtValorPago.add(icone_usuario);
+		background.add(icone_usuario);
 		
 		JDateChooser dateChooser = new JDateChooser();
 		dateChooser.setBounds(230, 103, 130, 23);
-		txtValorPago.add(dateChooser);
+		background.add(dateChooser);
 		
-		JFormattedTextField formattedTextField = new JFormattedTextField();
-		formattedTextField.setBounds(235, 186, 125, 23);
-		txtValorPago.add(formattedTextField);
+		JFormattedTextField txtValorPago = new JFormattedTextField();
+		txtValorPago.setBounds(235, 186, 125, 23);
+		try {
+            txtValorPago.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###R$")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+		int valorPago = Integer.parseInt(txtValorPago.getText().replace(".","").replace("R$",""));
+		background.add(txtValorPago);
 		
 	}
 }
