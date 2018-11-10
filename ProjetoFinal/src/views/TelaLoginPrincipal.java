@@ -70,12 +70,6 @@ public class TelaLoginPrincipal extends JFrame {
 		return panel;
 	}
 	
-	/*public void criaLabel(String titulo, int boundY, int boundX, int boundW, int boundH) {
-		JLabel lblNewLabel = new JLabel(titulo);
-		lblNewLabel.setBounds(10, 129, 71, 11);
-		contentPane.add(lblNewLabel);
-	}*/
-	
 	public TelaLoginPrincipal() {
 		
 		configuracoesTela();

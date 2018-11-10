@@ -23,6 +23,8 @@ import com.toedter.calendar.JDateChooser;
 import javax.swing.JButton;
 import javax.swing.DropMode;
 import javax.swing.JFormattedTextField;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TelaReembolso extends JFrame {
 
@@ -47,7 +49,8 @@ public class TelaReembolso extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public void configuracoesTela() {
+	
+	public TelaReembolso() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 644, 453);
@@ -55,15 +58,13 @@ public class TelaReembolso extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-	}
-	
-	public TelaReembolso() {
-		configuracoesTela();
+		this.setLocationRelativeTo(null); /* CENTRALIZA O CONTAINER */
+		
 		
 		JPanel background = new JPanel();
 		background.setLayout(null);
-		background.setBackground(Color.DARK_GRAY);
-		background.setBounds(0, 0, 694, 421);
+		background.setBackground(Color.WHITE);
+		background.setBounds(0, 0, 638, 421);
 		contentPane.add(background);
 		
 		JLabel label = new JLabel("Data:");
@@ -79,24 +80,34 @@ public class TelaReembolso extends JFrame {
 		comboCategoria.setBounds(60, 186, 130, 23);
 		background.add(comboCategoria);
 		
+		JScrollPane scrollPaneDescricao = new JScrollPane();
+		scrollPaneDescricao.setBounds(410, 103, 152, 59);
+		background.add(scrollPaneDescricao);
+		
 		JTextArea txtDescricao = new JTextArea();
+		scrollPaneDescricao.setViewportView(txtDescricao);
 		txtDescricao.setToolTipText("Fa\u00E7a uma descri\u00E7\u00E3o sucinta.");
 		txtDescricao.setTabSize(6);
 		txtDescricao.setLineWrap(true);
 		txtDescricao.setForeground(Color.DARK_GRAY);
 		txtDescricao.setBackground(Color.WHITE);
-		txtDescricao.setBounds(410, 103, 152, 59);
-		background.add(txtDescricao);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(410, 103, 152, 59);
+		background.add(scrollPane);
+		
+		JScrollPane scrollPane_2 = new JScrollPane();
+		scrollPane_2.setBounds(60, 289, 502, 112);
+		background.add(scrollPane_2);
 		
 		
 		
 		JTextArea txtContas = new JTextArea();
-		txtContas.setRows(100);
+		scrollPane_2.setViewportView(txtContas);
+		txtContas.setRows(40);
 		txtContas.setForeground(Color.DARK_GRAY);
 		txtContas.setEditable(false);
 		txtContas.setBackground(Color.WHITE);
-		txtContas.setBounds(60, 289, 502, 112);
-		background.add(txtContas);
 		
 		JLabel enviar = new JLabel("");
 		enviar.setIcon(new ImageIcon(TelaReembolso.class.getResource("/icons 1/page_add.png")));
@@ -151,6 +162,12 @@ public class TelaReembolso extends JFrame {
 		background.add(label_8);
 		
 		JLabel icone_sair = new JLabel("");
+		icone_sair.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				dispose();
+			}
+		});
 		icone_sair.setIcon(new ImageIcon(TelaReembolso.class.getResource("/Icones/sair-menu-2.png")));
 		icone_sair.setBounds(20, 22, 22, 21);
 		background.add(icone_sair);
@@ -167,12 +184,23 @@ public class TelaReembolso extends JFrame {
 		JFormattedTextField txtValorPago = new JFormattedTextField();
 		txtValorPago.setBounds(235, 186, 125, 23);
 		try {
-            txtValorPago.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###R$")));
+            txtValorPago.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-		int valorPago = Integer.parseInt(txtValorPago.getText().replace(".","").replace("R$",""));
 		background.add(txtValorPago);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.DARK_GRAY);
+		panel.setBounds(4, 6, 629, 411);
+		background.add(panel);
+		panel.setLayout(null);
+		
+		JLabel lblR = new JLabel("R$");
+		lblR.setForeground(Color.WHITE);
+		lblR.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblR.setBounds(362, 189, 43, 14);
+		panel.add(lblR);
 		
 	}
 }

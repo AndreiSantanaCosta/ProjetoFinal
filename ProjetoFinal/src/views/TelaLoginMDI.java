@@ -94,6 +94,11 @@ public class TelaLoginMDI extends JFrame {
 		mnAes.add(mntmPrestarContas);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Pedir Reembolso");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				new TelaReembolso().setVisible(true);;
+			}
+		});
 		mntmNewMenuItem.setBackground(Color.WHITE);
 		mntmNewMenuItem.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/icons 1/money.png")));
 		mnAes.add(mntmNewMenuItem);
@@ -169,8 +174,7 @@ public class TelaLoginMDI extends JFrame {
 		panel.setBounds(0, 0, 694, 117);
 		conteudoPrincipal.add(panel);
 		panel.setLayout(null);
-		JMenuItem mntmBemVindoa = new JMenuItem("Bem Vindo(a) "/* + funcionario.getNome()*/);
-		mntmBemVindoa.setSelected(true);
+		JMenuItem mntmBemVindoa = new JMenuItem("Bem Vindo(a) " + funcionario.getNome());
 		mntmBemVindoa.setBounds(477, 0, 217, 22);
 		panel.add(mntmBemVindoa);
 		mntmBemVindoa.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/icons 1/user_suit.png")));
@@ -183,7 +187,7 @@ public class TelaLoginMDI extends JFrame {
 		subPanel.setLayout(null);
 		
 		JScrollPane scroll = new JScrollPane();
-		scroll.setBounds(38, 108, 615, 202);
+		scroll.setBounds(38, 27, 615, 283);
 		subPanel.add(scroll);
 		
 		tabela = new JTable();
@@ -197,7 +201,16 @@ public class TelaLoginMDI extends JFrame {
 				{"Jo\u00E3o da Silva", "48 8890-3345", "joaosilva@hotmail.com", "asdasd"},
 				{"Pedro Cascaes", "48 9870-5634", "pedrinho@gmail.com", "daaadas"},
 				{"", "", "", ""},
-				{null, null, null, null},//SÃO AS LINHAS DA TABELA CADA LINHA DESSA E UMA LINHA NA TABELA
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
+				{null, null, null, null},
 				{null, null, null, null},
 				{null, null, null, null},
 				{null, null, null, null},
@@ -206,9 +219,19 @@ public class TelaLoginMDI extends JFrame {
 				{null, null, null, null},
 			},
 			new String[] {
-				"New column", "New column4", "New column3", "New column2"//ESSAS SÃO AS COLUNAS
+				"Nome do funcionario", "Matricula do Funcionário", "Cargo", "Tipo da Conta", "Valor", "Status"
 			}
 		));
+		
+		JLabel background = new JLabel("");
+		background.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/bg2.jpg")));
+		background.setBounds(0, 0, 631, 334);
+		subPanel.add(background);
+		
+		JLabel background2 = new JLabel("");
+		background2.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/bg2.jpg")));
+		background2.setBounds(350, 0, 344, 334);
+		subPanel.add(background2);
 		
 		
 	}

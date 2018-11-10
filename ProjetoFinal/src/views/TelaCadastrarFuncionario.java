@@ -5,6 +5,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
 import Conexao.Conexao;
@@ -31,7 +32,6 @@ public class TelaCadastrarFuncionario extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtNome;
-	private JTextField txtIdade;
 	private JTextField txtEmail;
 	private JTextField txtSenha;
 	private funcionarioDAO funcionarioD;
@@ -54,7 +54,7 @@ public class TelaCadastrarFuncionario extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public void configuracoesTela() {
+	public TelaCadastrarFuncionario() {
 		setTitle("Cadastro");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -64,11 +64,7 @@ public class TelaCadastrarFuncionario extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		this.setLocationRelativeTo(null); /*CENTRALIZA O CONTAINER*/
-	}
-	
-	public TelaCadastrarFuncionario() {
 		
-		configuracoesTela();
 		
 		JLabel lblLogin = new JLabel("Nome:");
 		lblLogin.setFont(new Font("Arial", Font.BOLD, 12));
@@ -88,13 +84,7 @@ public class TelaCadastrarFuncionario extends JFrame {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-		int rg = Integer.parseInt(txtRg.getText().replace(".","").replace("-",""));
 		contentPane.add(txtRg);
-		
-		JLabel lblIdade = new JLabel("Idade:");
-		lblIdade.setFont(new Font("Arial", Font.BOLD, 12));
-		lblIdade.setBounds(140, 298, 55, 14);
-		contentPane.add(lblIdade);
 		
 		JFormattedTextField txtCpf = new JFormattedTextField();
 		try {
@@ -104,13 +94,6 @@ public class TelaCadastrarFuncionario extends JFrame {
         }
 		txtCpf.setBounds(30, 75, 100, 20);
 		contentPane.add(txtCpf);
-		int cpf = Integer.parseInt(txtCpf.getText().replace(".","").replace("-",""));
-		
-		
-		txtIdade = new JTextField();
-		txtIdade.setColumns(10);
-		txtIdade.setBounds(150, 315, 30, 20);
-		contentPane.add(txtIdade);
 		
 		JLabel lblCpf = new JLabel("CPF:");
 		lblCpf.setFont(new Font("Arial", Font.BOLD, 12));
@@ -147,7 +130,7 @@ public class TelaCadastrarFuncionario extends JFrame {
 		lblSenha.setBounds(20, 298, 55, 14);
 		contentPane.add(lblSenha);
 		
-		txtSenha = new JTextField();
+		txtSenha = new JPasswordField();
 		txtSenha.setColumns(10);
 		txtSenha.setBounds(30, 315, 100, 20);
 		contentPane.add(txtSenha);
