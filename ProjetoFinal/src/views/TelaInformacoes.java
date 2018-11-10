@@ -78,7 +78,7 @@ public class TelaInformacoes extends JFrame {
 		JLabel label_1 = new JLabel("Nome: " + funcionario.getNome());
 		label_1.setIcon(new ImageIcon(TelaInformacoes.class.getResource("/icons/email.ico")));
 		label_1.setFont(new Font("Arial", Font.BOLD, 14));
-		label_1.setBounds(302, 75, 249, 14);
+		label_1.setBounds(301, 100, 249, 14);
 		contentPane.add(label_1);
 		
 		JLabel label_7 = new JLabel("");
@@ -94,23 +94,18 @@ public class TelaInformacoes extends JFrame {
 		
 		JLabel label_2 = new JLabel("CPF: " + funcionario.getCpf());
 		label_2.setFont(new Font("Arial", Font.BOLD, 14));
-		label_2.setBounds(302, 150, 249, 14);
+		label_2.setBounds(301, 140, 249, 14);
 		contentPane.add(label_2);
 		
 		JLabel label_3 = new JLabel("RG: " + funcionario.getRg());
 		label_3.setFont(new Font("Arial", Font.BOLD, 14));
-		label_3.setBounds(302, 189, 249, 14);
+		label_3.setBounds(301, 180, 249, 14);
 		contentPane.add(label_3);
 		
 		JLabel label_4 = new JLabel("E-MAIL: " + funcionario.getEmail());
 		label_4.setFont(new Font("Arial", Font.BOLD, 14));
-		label_4.setBounds(302, 225, 249, 17);
+		label_4.setBounds(301, 220, 249, 17);
 		contentPane.add(label_4);
-		
-		JLabel label_5 = new JLabel("Idade: ");
-		label_5.setFont(new Font("Arial", Font.BOLD, 14));
-		label_5.setBounds(302, 112, 249, 14);
-		contentPane.add(label_5);
 		
 		JLabel label_6 = new JLabel("");
 		label_6.setIcon(new ImageIcon(TelaInformacoes.class.getResource("/bg2.jpg")));

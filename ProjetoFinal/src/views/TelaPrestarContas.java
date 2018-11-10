@@ -38,6 +38,7 @@ import com.toedter.calendar.JDateChooser;
 import javax.swing.JScrollBar;
 import javax.swing.JFormattedTextField;
 import javax.swing.JScrollPane;
+import javax.swing.JCheckBox;
 
 public class TelaPrestarContas extends JFrame {
 
@@ -158,12 +159,27 @@ public class TelaPrestarContas extends JFrame {
 		panel_1.add(txtNumeroDoCartao);
 		txtNumeroDoCartao.setColumns(16);
 		
-		JRadioButton rdbtnNaoTenhoCartao = new JRadioButton("N\u00E3o tenho Cart\u00E3o");
-		rdbtnNaoTenhoCartao.setBounds(60, 206, 130, 23);
-		panel_1.add(rdbtnNaoTenhoCartao);
-		rdbtnNaoTenhoCartao.setForeground(Color.WHITE);
-		rdbtnNaoTenhoCartao.setBackground(Color.DARK_GRAY);
-
+		JCheckBox checkCartao = new JCheckBox("N\u00E3o tenho um cart\u00E3o");
+		checkCartao.addMouseListener(new MouseAdapter() {
+			boolean verifica = false;
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				verifica = !verifica;
+				if(verifica == true) {
+					txtNumeroDoCartao.setText("#############");
+					txtNumeroDoCartao.setEnabled(false);
+				}else {
+					txtNumeroDoCartao.setText("");
+					txtNumeroDoCartao.setEnabled(true);
+				}
+			}
+		});
+		checkCartao.setForeground(Color.WHITE);
+		checkCartao.setBackground(Color.DARK_GRAY);
+		checkCartao.setBounds(60, 201, 152, 23);
+		panel_1.add(checkCartao);
+		
+		
 		JLabel label_5 = new JLabel("Valor Pago:");
 		label_5.setBounds(410, 179, 76, 17);
 		label_5.setForeground(Color.WHITE);
@@ -234,7 +250,7 @@ public class TelaPrestarContas extends JFrame {
 								+ Cdespesa.getDespesaDescricao() + "\n" + quebraLinha + "\n");
 								
 								txtDespesasLançadas.setText(pedidos);
-						///LIMPA CAMPOS txtValorPago.setText(""); textDescricao.setText(""); txtNumeroDoCartao.setText("");
+						///LIMtxtValorPago.setText(""); textDescricao.setText(""); txtNumeroDoCartao.setText("");
 						
 					}
 				});
@@ -272,6 +288,7 @@ public class TelaPrestarContas extends JFrame {
 								btnCadastrarConta.setForeground(Color.WHITE);
 								btnCadastrarConta.setIcon(new ImageIcon(TelaPrestarContas.class.getResource("/icons 1/layout_add.png")));
 								btnCadastrarConta.setToolTipText("Cadastrar Conta");
+								
 		
 		
 	}
