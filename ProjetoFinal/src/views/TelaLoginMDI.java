@@ -1,5 +1,6 @@
 package views;
 import SistemaCorporativo.Funcionario;
+import SistemaCorporativo.PrestarContas;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
@@ -11,16 +12,24 @@ import javax.swing.plaf.DesktopPaneUI;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.event.ActionListener;
+import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.SwingConstants;
 import javax.swing.JDesktopPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import com.mysql.cj.protocol.Resultset;
+
+import DAO.contaDAO;
+
 import javax.swing.JScrollPane;
 import java.awt.Font;
 
@@ -29,6 +38,10 @@ public class TelaLoginMDI extends JFrame {
 	private JPanel conteudoPrincipal;
 	private Funcionario funcionario;
 	private JTable tabela;
+	private Object[][] FuncionarosContas;
+	private contaDAO conta;
+	int contador;
+	private String[] colunas = {"Nome do funcionario", "Matricula do Funcionário", "Cargo", "Tipo da Conta", "Valor", "Status"};
 	/**
 	 * Launch the application.
 	 */
@@ -190,38 +203,13 @@ public class TelaLoginMDI extends JFrame {
 		scroll.setBounds(38, 27, 615, 283);
 		subPanel.add(scroll);
 		
-		tabela = new JTable();
+		String[] colunas = {"Nome do funcionario", "Matricula do Funcionário", "Cargo", "Tipo da Conta", "Valor", "Status"};
+		Object[][] contas = carregarContas();
+		tabela = new JTable(contas, colunas);
 		tabela.setFont(new Font("Arial", Font.PLAIN, 13));
 		scroll.setViewportView(tabela);
 		tabela.setForeground(Color.WHITE);
 		tabela.setBackground(Color.DARK_GRAY);
-		tabela.setModel(new DefaultTableModel(
-			new Object[][] {
-				{"Ana Monteiro", "48 9923-7898", "ana.monteiro@gmail.com", "asdasda"},
-				{"Jo\u00E3o da Silva", "48 8890-3345", "joaosilva@hotmail.com", "asdasd"},
-				{"Pedro Cascaes", "48 9870-5634", "pedrinho@gmail.com", "daaadas"},
-				{"", "", "", ""},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-				{null, null, null, null},
-			},
-			new String[] {
-				"Nome do funcionario", "Matricula do Funcionário", "Cargo", "Tipo da Conta", "Valor", "Status"
-			}
-		));
 		
 		JLabel background = new JLabel("");
 		background.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/bg2.jpg")));
@@ -232,7 +220,33 @@ public class TelaLoginMDI extends JFrame {
 		background2.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/bg2.jpg")));
 		background2.setBounds(350, 0, 344, 334);
 		subPanel.add(background2);
-		
-		
 	}
+		
+	public String[][] carregarContas() {
+		ArrayList<PrestarContas> listaContas = new ArrayList<PrestarContas>();
+		conta = new contaDAO();
+		listaContas = conta.selectContas();
+
+		String[][] contas = new String[listaContas.size()][colunas.length];
+		
+		PrestarContas contaDetalhe;
+		for(int i = 0; i < listaContas.size(); i++) {
+			contaDetalhe = listaContas.get(i);
+		
+			contas[i][0] = contaDetalhe.getFuncionario().getCodigoFuncionario() +"";
+			contas[i][1] = contaDetalhe.getFuncionario().getNome();
+			contas[i][2] = contaDetalhe.getPerfilDescricao();
+			contas[i][3] = "";
+			contas[i][4] = contaDetalhe.getDespesa().getDespesaValor()+"";
+			contas[i][5] = contaDetalhe.getStatusDescricao();
+		}
+//		
+		return contas;
+	}
+	
+	
+	
+	
+	
+	
 }

@@ -8,6 +8,9 @@ public class PrestarContas {
 	private int status;
 	private int codigoFuncionario;
 	private int contaTipo;
+	private Funcionario funcionario;
+	private ContaDespesa despesa;
+	private String perfilDescricao, statusDescricao;
 	
 	public PrestarContas(String cartao, String contaDoMes, int status,
 			int codigoFuncionario, int contaTipo) {
@@ -17,6 +20,47 @@ public class PrestarContas {
 		this.status = status;
 		this.codigoFuncionario = codigoFuncionario;
 		this.contaTipo = contaTipo;
+	}
+	
+	public PrestarContas(Funcionario funcionario, String perfilDescricao, String statusDescricao, ContaDespesa despesa) {
+		this.funcionario = funcionario;
+		this.perfilDescricao = perfilDescricao;
+		this.statusDescricao = statusDescricao;
+		this.despesa = despesa;
+	}
+	
+	public PrestarContas() {}
+
+	public Funcionario getFuncionario() {
+		return funcionario;
+	}
+
+	public void setFuncionario(Funcionario funcionario) {
+		this.funcionario = funcionario;
+	}
+
+	public ContaDespesa getDespesa() {
+		return despesa;
+	}
+
+	public void setDespesa(ContaDespesa despesa) {
+		this.despesa = despesa;
+	}
+
+	public String getPerfilDescricao() {
+		return perfilDescricao;
+	}
+
+	public void setPerfilDescricao(String perfilDescricao) {
+		this.perfilDescricao = perfilDescricao;
+	}
+
+	public String getStatusDescricao() {
+		return statusDescricao;
+	}
+
+	public void setStatusDescricao(String statusDescricao) {
+		this.statusDescricao = statusDescricao;
 	}
 
 	public int getCodigoConta() {
