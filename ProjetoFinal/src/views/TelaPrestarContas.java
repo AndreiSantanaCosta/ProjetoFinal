@@ -95,11 +95,11 @@ public class TelaPrestarContas extends JFrame {
 		panel_1.setLayout(null);
 		panel_1.add(txtValorPago);
 		
-		JLabel label_4 = new JLabel("Data:");
-		label_4.setBounds(235, 78, 43, 14);
-		label_4.setForeground(Color.WHITE);
-		label_4.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panel_1.add(label_4);
+		JLabel lblData = new JLabel("Data:");
+		lblData.setBounds(235, 78, 43, 14);
+		lblData.setForeground(Color.WHITE);
+		lblData.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		panel_1.add(lblData);
 
 		JComboBox comboCategoria = new JComboBox();
 		comboCategoria.setBounds(230, 176, 130, 23);
@@ -132,11 +132,11 @@ public class TelaPrestarContas extends JFrame {
 		textDescricao.setForeground(Color.DARK_GRAY);
 		textDescricao.setBackground(Color.WHITE);
 		
-		JLabel label_1 = new JLabel("M\u00EAs de Refer\u00EAncia:");
-		label_1.setBounds(50, 78, 120, 14);
-		panel_1.add(label_1);
-		label_1.setForeground(Color.WHITE);
-		label_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel lblMesReferencia = new JLabel("M\u00EAs de Refer\u00EAncia:");
+		lblMesReferencia.setBounds(50, 78, 120, 14);
+		panel_1.add(lblMesReferencia);
+		lblMesReferencia.setForeground(Color.WHITE);
+		lblMesReferencia.setFont(new Font("Tahoma", Font.PLAIN, 14));
 	
 		
 		
@@ -148,11 +148,11 @@ public class TelaPrestarContas extends JFrame {
 				"Abril", "Maio", "Junho", "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro" }));
 		comboMesReferencia.setFont(new Font("Tahoma", Font.PLAIN, 14));
 	
-		JLabel label_2 = new JLabel("Numero do Cart\u00E3o:");
-		label_2.setBounds(50, 151, 120, 14);
-		panel_1.add(label_2);
-		label_2.setForeground(Color.WHITE);
-		label_2.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel lblNumCartao = new JLabel("Numero do Cart\u00E3o:");
+		lblNumCartao.setBounds(50, 151, 120, 14);
+		panel_1.add(lblNumCartao);
+		lblNumCartao.setForeground(Color.WHITE);
+		lblNumCartao.setFont(new Font("Tahoma", Font.PLAIN, 14));
 	
 		txtNumeroDoCartao = new JTextField();
 		txtNumeroDoCartao.setBounds(60, 176, 130, 23);
@@ -180,23 +180,23 @@ public class TelaPrestarContas extends JFrame {
 		panel_1.add(checkCartao);
 		
 		
-		JLabel label_5 = new JLabel("Valor Pago:");
-		label_5.setBounds(410, 179, 76, 17);
-		label_5.setForeground(Color.WHITE);
-		label_5.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panel_1.add(label_5);
+		JLabel lblValorPago = new JLabel("Valor Pago:");
+		lblValorPago.setBounds(410, 179, 76, 17);
+		lblValorPago.setForeground(Color.WHITE);
+		lblValorPago.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		panel_1.add(lblValorPago);
 
-		JLabel label_6 = new JLabel("Categoria:");
-		label_6.setBounds(235, 148, 76, 17);
-		label_6.setForeground(Color.WHITE);
-		label_6.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panel_1.add(label_6);
+		JLabel lblCategoria = new JLabel("Categoria:");
+		lblCategoria.setBounds(235, 148, 76, 17);
+		lblCategoria.setForeground(Color.WHITE);
+		lblCategoria.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		panel_1.add(lblCategoria);
 
-		JLabel label_7 = new JLabel("Descri\u00E7\u00E3o:");
-		label_7.setBounds(410, 78, 76, 17);
-		label_7.setForeground(Color.WHITE);
-		label_7.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		panel_1.add(label_7);
+		JLabel lblDescricao = new JLabel("Descri\u00E7\u00E3o:");
+		lblDescricao.setBounds(410, 78, 76, 17);
+		lblDescricao.setForeground(Color.WHITE);
+		lblDescricao.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		panel_1.add(lblDescricao);
 		
 		JLabel btnSair = new JLabel("");
 		btnSair.setBounds(20, 22, 22, 21);

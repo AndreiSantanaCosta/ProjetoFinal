@@ -35,7 +35,7 @@ public class despesaDAO {
 			String sql = "INSERT INTO conta_despesa (despesa_data, despesa_valor, despesa_descricao,"
 					+ "despesa_conta_id, categoria_id)"
 								+ "VALUES(?,?,?,?,?)";
-			
+			System.out.println(ArrayDespesas.size());
 			for(int i = 0; i < ArrayDespesas.size(); i++ ) {
 				stmt = con.prepareStatement(sql);
 				stmt.setString(1, ArrayDespesas.get(i).getDespesaData());

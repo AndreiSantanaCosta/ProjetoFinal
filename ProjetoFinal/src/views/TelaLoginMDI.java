@@ -32,6 +32,8 @@ import DAO.contaDAO;
 
 import javax.swing.JScrollPane;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class TelaLoginMDI extends JFrame {
 
@@ -206,6 +208,13 @@ public class TelaLoginMDI extends JFrame {
 		String[] colunas = {"Nome do funcionario", "Matricula do Funcionário", "Cargo", "Tipo da Conta", "Valor", "Status"};
 		Object[][] contas = carregarContas();
 		tabela = new JTable(contas, colunas);
+		tabela.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				new TelaDetalhesConta().setVisible(true);
+			}
+		});
+		tabela.setEnabled(false);
 		tabela.setFont(new Font("Arial", Font.PLAIN, 13));
 		scroll.setViewportView(tabela);
 		tabela.setForeground(Color.WHITE);
@@ -239,6 +248,7 @@ public class TelaLoginMDI extends JFrame {
 			contas[i][3] = "";
 			contas[i][4] = contaDetalhe.getDespesa().getDespesaValor()+"";
 			contas[i][5] = contaDetalhe.getStatusDescricao();
+			
 		}
 //		
 		return contas;

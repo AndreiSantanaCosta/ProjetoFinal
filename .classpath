@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="ProjetoFinal/src"/>
+	<classpathentry kind="lib" path="C:/Users/danie/eclipse-workspace/ProjetoFinal/ProjetoFinal/src/img/bg.zip"/>
+	<classpathentry kind="lib" path="C:/Users/danie/eclipse-workspace/ProjetoFinal/ProjetoFinal/src/img/Icones.zip"/>
+	<classpathentry kind="lib" path="C:/Users/danie/eclipse-workspace/ProjetoFinal/ProjetoFinal/src/img/bg2.zip"/>
+	<classpathentry kind="lib" path="C:/Users/danie/eclipse-workspace/ProjetoFinal/ProjetoFinal/src/img/icons2.zip"/>
+	<classpathentry kind="lib" path="C:/Users/danie/eclipse-workspace/ProjetoFinal/ProjetoFinal/src/img/mysql-connector-java-8.0.12.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danie/eclipse-workspace/ProjetoFinal/ProjetoFinal/src/img/jcalendar-1.4/lib/jcalendar-1.4.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danie/eclipse-workspace/ProjetoFinal/ProjetoFinal/src/img/jcalendar-1.4/lib/jgoodies-common-1.2.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danie/eclipse-workspace/ProjetoFinal/ProjetoFinal/src/img/jcalendar-1.4/lib/jgoodies-looks-2.4.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/danie/eclipse-workspace/ProjetoFinal/ProjetoFinal/src/img/jcalendar-1.4/lib/junit-4.6.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
