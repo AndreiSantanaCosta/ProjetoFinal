@@ -47,7 +47,6 @@ public class contaDAO {
 	public void saveContaArrayList(PrestarContas conta) {
 		try{
 			selectJtable.add(conta);
-			System.out.println(selectJtable.size());
 		}catch(Exception e) {
 			JOptionPane.showMessageDialog(null, e);
 		}
