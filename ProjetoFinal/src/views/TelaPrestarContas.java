@@ -231,7 +231,7 @@ public class TelaPrestarContas extends JFrame {
 		panel.add(lblR);
 		
 				JLabel btnEnviar = new JLabel("");
-				btnEnviar.setBounds(274, 223, 23, 16);
+				btnEnviar.setBounds(282, 223, 23, 16);
 				panel.add(btnEnviar);
 				btnEnviar.addMouseListener(new MouseAdapter() {
 					String pedidos = "";
@@ -257,12 +257,6 @@ public class TelaPrestarContas extends JFrame {
 				btnEnviar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 				btnEnviar.setToolTipText("Enviar");
 				btnEnviar.setIcon(new ImageIcon(TelaPrestarContas.class.getResource("/icons 1/script_add.png")));
-				
-						JLabel btnLimparCampos = new JLabel("");
-						btnLimparCampos.setBounds(303, 224, 23, 14);
-						panel.add(btnLimparCampos);
-						btnLimparCampos.setToolTipText("Limpar Campos");
-						btnLimparCampos.setIcon(new ImageIcon(TelaPrestarContas.class.getResource("/icons 1/cancel.png")));
 						
 								JLabel btnCadastrarConta = new JLabel("Cadastrar Conta");
 								btnCadastrarConta.setBounds(235, 255, 120, 23);

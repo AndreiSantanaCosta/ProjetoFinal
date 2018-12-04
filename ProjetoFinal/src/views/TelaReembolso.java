@@ -109,19 +109,6 @@ public class TelaReembolso extends JFrame {
 		txtContas.setEditable(false);
 		txtContas.setBackground(Color.WHITE);
 		
-		JLabel enviar = new JLabel("");
-		enviar.setIcon(new ImageIcon(TelaReembolso.class.getResource("/icons 1/page_add.png")));
-		enviar.setToolTipText("Enviar");
-		enviar.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		enviar.setBounds(300, 228, 23, 16);
-		background.add(enviar);
-		
-		JLabel limpar = new JLabel("");
-		limpar.setIcon(new ImageIcon(TelaReembolso.class.getResource("/icons 1/cancel.png")));
-		limpar.setToolTipText("Limpar Campos");
-		limpar.setBounds(333, 230, 23, 14);
-		background.add(limpar);
-		
 		JLabel label_3 = new JLabel("M\u00EAs de Refer\u00EAncia:");
 		label_3.setForeground(Color.WHITE);
 		label_3.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -201,6 +188,13 @@ public class TelaReembolso extends JFrame {
 		lblR.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblR.setBounds(362, 189, 43, 14);
 		panel.add(lblR);
+		
+		JLabel enviar = new JLabel("");
+		enviar.setBounds(311, 224, 23, 16);
+		panel.add(enviar);
+		enviar.setIcon(new ImageIcon(TelaReembolso.class.getResource("/icons 1/page_add.png")));
+		enviar.setToolTipText("Enviar");
+		enviar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 	}
 }

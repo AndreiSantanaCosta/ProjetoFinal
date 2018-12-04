@@ -184,20 +184,13 @@ public class TelaCadastrarFuncionario extends JFrame {
 		sair.setBounds(243, 11, 22, 21);
 		panel.add(sair);
 		
-		JButton btnLimparCampos = new JButton("Limpar \r\nCampos");
-		btnLimparCampos.setForeground(Color.WHITE);
-		btnLimparCampos.setBackground(Color.DARK_GRAY);
-		btnLimparCampos.setFont(new Font("Tahoma", Font.BOLD, 11));
-		btnLimparCampos.setBounds(147, 327, 132, 33);
-		panel.add(btnLimparCampos);
-		
 		JButton btnRegistrar = new JButton("Registrar");
 		btnRegistrar.setIcon(new ImageIcon(TelaCadastrarFuncionario.class.getResource("/Icones/login.png")));
 		
 		btnRegistrar.setForeground(Color.WHITE);
 		btnRegistrar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		btnRegistrar.setBackground(Color.DARK_GRAY);
-		btnRegistrar.setBounds(10, 327, 127, 33);
+		btnRegistrar.setBounds(88, 327, 127, 33);
 		panel.add(btnRegistrar);
 		btnRegistrar.grabFocus();
 		

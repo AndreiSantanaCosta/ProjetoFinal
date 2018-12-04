@@ -149,20 +149,8 @@ public class TelaLoginPrincipal extends JFrame {
 		btnLogin.setForeground(Color.LIGHT_GRAY);
 		btnLogin.setBackground(Color.DARK_GRAY);
 		btnLogin.setFont(new Font("Arial", Font.BOLD, 14));
-		btnLogin.setBounds(112, 226, 89, 23);
+		btnLogin.setBounds(165, 231, 89, 23);
 		contentPane.add(btnLogin);
-		
-		JButton btnEsqueciMinhaSenha = new JButton("Ajuda");
-		btnEsqueciMinhaSenha.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				JOptionPane.showMessageDialog(null, "Problemas em realizar o seu acesso? lembre-se seu login é composto por ### e sua senha por ###");
-			}
-		});
-		btnEsqueciMinhaSenha.setForeground(Color.LIGHT_GRAY);
-		btnEsqueciMinhaSenha.setFont(new Font("Arial", Font.BOLD, 12));
-		btnEsqueciMinhaSenha.setBackground(Color.DARK_GRAY);
-		btnEsqueciMinhaSenha.setBounds(211, 226, 89, 23);
-		contentPane.add(btnEsqueciMinhaSenha);
 		
 		JLabel background = new JLabel("");
 		background.setBackground(Color.DARK_GRAY);
