@@ -60,7 +60,7 @@ public class contaDAO {
 		Funcionario func = null;
 		ContaDespesa despesa = null;
 		
-		String sql = "select f.fun_id, f.fun_nome, Fp.perfil_descricao, Sc.status_descricao, sum(Cd.despesa_valor) as Valor" + 
+		String sql = "select f.fun_id, f.fun_nome,Fp.perfil_descricao, Sc.status_descricao, sum(Cd.despesa_valor) as Valor, Pc.conta_tipo" + 
 				"	from presta_conta Pc" + 
 				"	inner join status_conta Sc on Sc.status_id = Pc.status_id" + 
 				"	inner join funcionario f on f.fun_id = Pc.fun_id" + 
@@ -79,8 +79,8 @@ public class contaDAO {
 				
 				despesa = new  ContaDespesa();
 				despesa.setDespesaValor(rs.getDouble(5));
-				
-				conta = new PrestarContas(func, rs.getString(3), rs.getString(4), despesa);
+				int contaTipo = rs.getInt(6);
+				conta = new PrestarContas(func, rs.getString(3), contaTipo ,rs.getString(4), despesa);
 				saveContaArrayList(conta);
 			}
 		}catch(SQLException e) {

@@ -22,11 +22,12 @@ public class PrestarContas {
 		this.contaTipo = contaTipo;
 	}
 	
-	public PrestarContas(Funcionario funcionario, String perfilDescricao, String statusDescricao, ContaDespesa despesa) {
+	public PrestarContas(Funcionario funcionario, String perfilDescricao, int contaTipo ,String statusDescricao, ContaDespesa despesa) {
 		this.funcionario = funcionario;
 		this.perfilDescricao = perfilDescricao;
 		this.statusDescricao = statusDescricao;
 		this.despesa = despesa;
+		this.contaTipo = contaTipo;
 	}
 	
 	public PrestarContas() {}

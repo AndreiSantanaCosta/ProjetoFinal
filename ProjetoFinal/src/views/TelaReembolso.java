@@ -7,6 +7,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JComboBox;
 import java.awt.Color;
@@ -20,16 +22,25 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 
 import com.toedter.calendar.JDateChooser;
+
+import DAO.contaDAO;
+import DAO.despesaDAO;
+import SistemaCorporativo.ContaDespesa;
+import SistemaCorporativo.Funcionario;
+import SistemaCorporativo.PrestarContas;
+
 import javax.swing.JButton;
 import javax.swing.DropMode;
 import javax.swing.JFormattedTextField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.SimpleDateFormat;
 
 public class TelaReembolso extends JFrame {
 
 	private JPanel contentPane;
-
+	private despesaDAO despesaD = new despesaDAO();;
+	private contaDAO contaDAO;
 	/**
 	 * Launch the application.
 	 */
@@ -37,8 +48,8 @@ public class TelaReembolso extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaReembolso frame = new TelaReembolso();
-					frame.setVisible(true);
+					//TelaReembolso frame = new TelaReembolso();
+					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -50,7 +61,7 @@ public class TelaReembolso extends JFrame {
 	 * Create the frame.
 	 */
 	
-	public TelaReembolso() {
+	public TelaReembolso(Funcionario funcionario) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 644, 453);
@@ -123,6 +134,23 @@ public class TelaReembolso extends JFrame {
 		background.add(comboMesReferencia);
 		
 		JLabel label_5 = new JLabel("Cadastrar Conta");
+		label_5.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				String contaMes = "2018-01-01";
+				int codigoFunc = funcionario.getCodigoFuncionario();
+				// Status da conta e nao aprovado
+				int status = 3;
+				// Tipo da conta e prestar conta
+				int contaTipo = 2;
+				JOptionPane.showMessageDialog(null, codigoFunc);
+				PrestarContas conta = new PrestarContas("0",contaMes, status, codigoFunc, contaTipo);
+				contaDAO = new contaDAO();
+				if (contaDAO.cadastrarConta(conta) == true) {
+					despesaD.inserirDespesa();
+				}
+			}
+		});
 		label_5.setIcon(new ImageIcon(TelaReembolso.class.getResource("/icons 1/layout_add.png")));
 		label_5.setToolTipText("Cadastrar Conta");
 		label_5.setForeground(Color.WHITE);
@@ -164,9 +192,9 @@ public class TelaReembolso extends JFrame {
 		icone_usuario.setBounds(300, 11, 93, 71);
 		background.add(icone_usuario);
 		
-		JDateChooser dateChooser = new JDateChooser();
-		dateChooser.setBounds(230, 103, 130, 23);
-		background.add(dateChooser);
+		JDateChooser calendario = new JDateChooser();
+		calendario.setBounds(230, 103, 130, 23);
+		background.add(calendario);
 		
 		JFormattedTextField txtValorPago = new JFormattedTextField();
 		txtValorPago.setBounds(235, 186, 125, 23);
@@ -190,6 +218,27 @@ public class TelaReembolso extends JFrame {
 		panel.add(lblR);
 		
 		JLabel enviar = new JLabel("");
+		enviar.addMouseListener(new MouseAdapter() {
+			String pedidos = "";
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+				String date = dt.format(calendario.getCalendar().getTime());
+				ContaDespesa Cdespesa = new ContaDespesa(date, Double.parseDouble(txtValorPago.getText().replace(".","")),
+						txtDescricao.getText(), (comboCategoria.getSelectedIndex() + 1));
+				despesaD.saveDespesaArrayList(Cdespesa);
+				
+				SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+				String data = dateFormat.format(calendario.getCalendar().getTime());
+				
+				String quebraLinha = "------------FIM DO PEDIDO------------";
+						pedidos += ("Data: " + data + "\n Valor Pago: " + txtValorPago.getText() + "R$"
+						+ "\n Categoria: " + comboCategoria.getSelectedIndex() + 1 + "\n Descrição: "
+						+ Cdespesa.getDespesaDescricao() + "\n" + quebraLinha + "\n");
+						
+						txtContas.setText(pedidos);
+			}
+		});
 		enviar.setBounds(311, 224, 23, 16);
 		panel.add(enviar);
 		enviar.setIcon(new ImageIcon(TelaReembolso.class.getResource("/icons 1/page_add.png")));

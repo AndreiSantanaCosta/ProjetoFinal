@@ -8,6 +8,9 @@ public class Reembolsoo {
 	private int categoria;
 	private String descricao;
 	private PrestarContas codigo;
+	private int status;
+	private int tipoconta;
+	private int codigoFuncionario;
 	
 	public Reembolsoo(int conta, String data, double valorPago, int categoria, String descricao, PrestarContas codigo) {
 		super();
@@ -18,7 +21,14 @@ public class Reembolsoo {
 		this.descricao = descricao;
 		this.codigo = codigo;
 	}
-
+	
+	public Reembolsoo(String contaDoMes, int status, int tipoconta, int codigofuncionario) {
+		this.data = contaDoMes;
+		this.status = status;
+		this.tipoconta = tipoconta;
+		this.codigoFuncionario = codigofuncionario;
+	}
+	
 	public int getConta() {
 		return conta;
 	}

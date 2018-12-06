@@ -8,6 +8,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.plaf.DesktopPaneUI;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
@@ -18,6 +20,8 @@ import javax.swing.ImageIcon;
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
@@ -111,7 +115,7 @@ public class TelaLoginMDI extends JFrame {
 		JMenuItem mntmNewMenuItem = new JMenuItem("Pedir Reembolso");
 		mntmNewMenuItem.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				new TelaReembolso().setVisible(true);;
+				new TelaReembolso(funcionario).setVisible(true);;
 			}
 		});
 		mntmNewMenuItem.setBackground(Color.WHITE);
@@ -208,12 +212,7 @@ public class TelaLoginMDI extends JFrame {
 		String[] colunas = {"Nome do funcionario", "Matricula do Funcionário", "Cargo", "Tipo da Conta", "Valor", "Status"};
 		Object[][] contas = carregarContas();
 		tabela = new JTable(contas, colunas);
-		tabela.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				new TelaDetalhesConta().setVisible(true);
-			}
-		});
+		
 		tabela.setEnabled(false);
 		tabela.setFont(new Font("Arial", Font.PLAIN, 13));
 		scroll.setViewportView(tabela);
@@ -237,7 +236,7 @@ public class TelaLoginMDI extends JFrame {
 		listaContas = conta.selectContas();
 
 		String[][] contas = new String[listaContas.size()][colunas.length];
-		
+		String tipoconta = "";
 		PrestarContas contaDetalhe;
 		for(int i = 0; i < listaContas.size(); i++) {
 			contaDetalhe = listaContas.get(i);
@@ -245,7 +244,12 @@ public class TelaLoginMDI extends JFrame {
 			contas[i][0] = contaDetalhe.getFuncionario().getCodigoFuncionario() +"";
 			contas[i][1] = contaDetalhe.getFuncionario().getNome();
 			contas[i][2] = contaDetalhe.getPerfilDescricao();
-			contas[i][3] = "";
+			if(contaDetalhe.getContaTipo() == 1) {
+				tipoconta = "Prestação de Conta";
+			}else {
+				tipoconta = "Reembolso";
+			}
+			contas[i][3] = tipoconta;
 			contas[i][4] = contaDetalhe.getDespesa().getDespesaValor()+"";
 			contas[i][5] = contaDetalhe.getStatusDescricao();
 			
@@ -254,9 +258,5 @@ public class TelaLoginMDI extends JFrame {
 		return contas;
 	}
 	
-	
-	
-	
-	
-	
+
 }

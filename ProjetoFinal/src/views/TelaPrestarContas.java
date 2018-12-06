@@ -237,7 +237,9 @@ public class TelaPrestarContas extends JFrame {
 					String pedidos = "";
 					@Override
 					public void mouseClicked(MouseEvent arg0) {
-						ContaDespesa Cdespesa = new ContaDespesa("2018-01-01", Double.parseDouble(txtValorPago.getText().replace(".","")),
+						SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
+						String date = dt.format(calendario.getCalendar().getTime());
+						ContaDespesa Cdespesa = new ContaDespesa(date, Double.parseDouble(txtValorPago.getText().replace(".","")),
 								textDescricao.getText(), (comboCategoria.getSelectedIndex() + 1));
 						despesaD.saveDespesaArrayList(Cdespesa);
 						
@@ -269,7 +271,7 @@ public class TelaPrestarContas extends JFrame {
 										String contaMes = "2018-01-01";
 										int codigoFunc = funcionario.getCodigoFuncionario();
 										// Status da conta e nao aprovado
-										int status = 2;
+										int status = 3;
 										// Tipo da conta e prestar conta
 										int contaTipo = 1;
 										PrestarContas conta = new PrestarContas(cartao, contaMes, status, codigoFunc, contaTipo);
