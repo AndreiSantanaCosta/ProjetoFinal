@@ -95,4 +95,54 @@ public class contaDAO {
 		
 		return selectJtable;
 	}
+	
+	public ArrayList<PrestarContas> selectContasByFunId(int funId) {
+		ResultSet rs = null;
+		Conexao conection = new Conexao();
+		PrestarContas conta;
+		PreparedStatement stmt = null;
+		Funcionario func = null;
+		ContaDespesa despesa = null;
+		
+		String sql = "select Pc.conta_id, Pc.conta_mes, Sc.status_descricao, sum(Cd.despesa_valor) as Valor, Pc.conta_tipo" + 
+				"					from presta_conta Pc \r\n" + 
+				"					inner join status_conta Sc on Sc.status_id = Pc.status_id" + 
+				"					inner join conta_despesa Cd on Cd.despesa_conta_id = Pc.conta_id" + 
+				"				where Pc.fun_id = ?" + 
+				"				group by (Pc.conta_id)";
+			
+		try {
+			Connection con = conection.getConexaoMYSQL();
+			stmt = con.prepareStatement(sql);
+			stmt.setInt(1, funId);
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				conta = new PrestarContas();
+				despesa = new  ContaDespesa();
+				
+				despesa.setDespesaValor(rs.getDouble(4));
+				
+				conta.setDespesa(despesa);
+				int contaTipo = rs.getInt(5);
+				conta.setContaTipo(contaTipo);
+				conta.setCodigoConta(rs.getInt(1));
+				conta.setContaDoMes(rs.getString(2));
+				conta.setStatusDescricao(rs.getString(3));
+				
+				saveContaArrayList(conta);
+			}
+		}catch(SQLException e) {
+			
+			System.out.println(e);
+			
+		}catch (Exception e) {
+			System.out.println(e);
+		}finally {
+			conection.closeConexaoMYSQL();
+		}
+		
+		return selectJtable;
+	}
+	
+	
 }

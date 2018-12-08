@@ -48,6 +48,7 @@ public class TelaLoginMDI extends JFrame {
 	private contaDAO conta;
 	int contador;
 	private String[] colunas = {"Nome do funcionario", "Matricula do Funcionário", "Cargo", "Tipo da Conta", "Valor", "Status"};
+	private String[] colunasFunContas = {"Código", "Tipo de Conta", "Mês", "Valor", "Status"};
 	/**
 	 * Launch the application.
 	 */
@@ -209,9 +210,7 @@ public class TelaLoginMDI extends JFrame {
 		scroll.setBounds(38, 27, 615, 283);
 		subPanel.add(scroll);
 		
-		String[] colunas = {"Nome do funcionario", "Matricula do Funcionário", "Cargo", "Tipo da Conta", "Valor", "Status"};
-		Object[][] contas = carregarContas();
-		tabela = new JTable(contas, colunas);
+		criaJTable();
 		
 		tabela.setEnabled(false);
 		tabela.setFont(new Font("Arial", Font.PLAIN, 13));
@@ -230,7 +229,15 @@ public class TelaLoginMDI extends JFrame {
 		subPanel.add(background2);
 	}
 		
-	public String[][] carregarContas() {
+	public void criaJTable() {
+		if(funcionario.getPerfilFuncionario() == 1) {
+			carregarContas();
+		}else if (funcionario.getPerfilFuncionario() == 2) {
+			carregarContasByFuncionarioId(funcionario.getCodigoFuncionario());
+		}
+	}
+	
+	public void carregarContas() {
 		ArrayList<PrestarContas> listaContas = new ArrayList<PrestarContas>();
 		conta = new contaDAO();
 		listaContas = conta.selectContas();
@@ -254,8 +261,36 @@ public class TelaLoginMDI extends JFrame {
 			contas[i][5] = contaDetalhe.getStatusDescricao();
 			
 		}
-//		
-		return contas;
+		tabela = new JTable(contas, colunas);
+	}
+	
+	public void carregarContasByFuncionarioId(int codigo) {
+		ArrayList<PrestarContas> funcontas = new ArrayList<PrestarContas>();
+		conta = new contaDAO();
+		funcontas = conta.selectContasByFunId(codigo);
+		int x = 0;
+		if(funcontas.size() > 0) {
+			x = funcontas.size();
+		}
+		String[][] contas = new String[x][colunasFunContas.length];
+		String tipoconta = "";
+		PrestarContas contaDetalhe;
+		
+		for(int i = 0; i < funcontas.size(); i++) {
+			contaDetalhe = funcontas.get(i);
+			
+			contas[i][0] = contaDetalhe.getCodigoConta()+"";
+			if(contaDetalhe.getContaTipo() == 1) {
+				tipoconta = "Prestação de Conta";
+			}else {
+				tipoconta = "Reembolso";
+			}
+			contas[i][1] = tipoconta;
+			contas[i][2] = contaDetalhe.getContaDoMes();
+			contas[i][3] = contaDetalhe.getDespesa().getDespesaValor()+"";
+			contas[i][4] = contaDetalhe.getStatusDescricao();
+		}
+		tabela = new JTable(contas, colunasFunContas);
 	}
 	
 

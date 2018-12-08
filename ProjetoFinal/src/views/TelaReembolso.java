@@ -144,7 +144,7 @@ public class TelaReembolso extends JFrame {
 				// Tipo da conta e prestar conta
 				int contaTipo = 2;
 				JOptionPane.showMessageDialog(null, codigoFunc);
-				PrestarContas conta = new PrestarContas("0",contaMes, status, codigoFunc, contaTipo);
+				PrestarContas conta = new PrestarContas("",contaMes, status, codigoFunc, contaTipo);
 				contaDAO = new contaDAO();
 				if (contaDAO.cadastrarConta(conta) == true) {
 					despesaD.inserirDespesa();
