@@ -201,7 +201,7 @@ public class TelaCadastrarFuncionario extends JFrame {
 				String rg = txtRg.getText();
 				String cpf = txtCpf.getText();
 				String login = nome.replaceAll(" ", "") + cpf.substring(0, 2);
-				int perfil = comboBoxPerfil.getSelectedIndex();
+				int perfil = comboBoxPerfil.getSelectedIndex() + 1;
 				int responsavel = comboBoxResponsavel.getSelectedIndex() + 1;
 				String email = txtEmail.getText();
 				

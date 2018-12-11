@@ -27,7 +27,10 @@ public class funcionarioDAO {
 				funcionario.setVerificaLogin(true);
 				funcionario.setCodigoFuncionario(result.getInt(1));
 				funcionario.setNome(result.getString(2));
+				funcionario.setRg(result.getString(5));
+				funcionario.setCpf(result.getString(6));
 				funcionario.setPerfilFuncionario(result.getInt(8));
+				funcionario.setEmail(result.getString(9));
 			}
 			
 		}catch (Exception e) {

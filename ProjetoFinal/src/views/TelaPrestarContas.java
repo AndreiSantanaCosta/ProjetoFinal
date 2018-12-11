@@ -239,7 +239,7 @@ public class TelaPrestarContas extends JFrame {
 					public void mouseClicked(MouseEvent arg0) {
 						SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
 						String date = dt.format(calendario.getCalendar().getTime());
-						ContaDespesa Cdespesa = new ContaDespesa(date, Double.parseDouble(txtValorPago.getText().replace(".","")),
+						ContaDespesa Cdespesa = new ContaDespesa(date, Double.parseDouble(txtValorPago.getText().replaceAll(".","")),
 								textDescricao.getText(), (comboCategoria.getSelectedIndex() + 1));
 						despesaD.saveDespesaArrayList(Cdespesa);
 						
