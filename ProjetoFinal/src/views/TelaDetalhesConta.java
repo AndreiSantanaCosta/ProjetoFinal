@@ -100,7 +100,7 @@ public class TelaDetalhesConta extends JFrame {
 		panel.add(btnSair);
 		
 		JLabel lblMsReferncia = new JLabel("M\u00EAs Refer\u00EAncia: " + conta.getContaDoMes());
-		lblMsReferncia.setBounds(25, 264, 170, 14);
+		lblMsReferncia.setBounds(25, 264, 336, 14);
 		panel.add(lblMsReferncia);
 		
 		if(conta.getContaTipo() == 1) {
@@ -110,29 +110,29 @@ public class TelaDetalhesConta extends JFrame {
 		}
 		
 		JLabel lblTipoDeSolicitao = new JLabel("Tipo de Solicita\u00E7\u00E3o: " + tipoConta);
-		lblTipoDeSolicitao.setBounds(25, 304, 140, 14);
+		lblTipoDeSolicitao.setBounds(25, 304, 336, 14);
 		panel.add(lblTipoDeSolicitao);
 		
 		JLabel lblValorPago = new JLabel("Valor pago: " + conta.getDespesa().getDespesaValor());
-		lblValorPago.setBounds(25, 343, 140, 14);
+		lblValorPago.setBounds(25, 343, 336, 14);
 		panel.add(lblValorPago);
 	
 		JLabel lblCargo = new JLabel("Cargo: " + conta.getPerfilDescricao());
-		lblCargo.setBounds(25, 196, 140, 14);
+		lblCargo.setBounds(25, 196, 336, 14);
 		panel.add(lblCargo);
 		
 		JLabel lblMatrculaDoFuncionrio = new JLabel("Matr\u00EDcula Do Funcion\u00E1rio: " + conta.getFuncionario().getCodigoFuncionario());
-		lblMatrculaDoFuncionrio.setBounds(25, 152, 113, 14);
+		lblMatrculaDoFuncionrio.setBounds(25, 152, 336, 14);
 		panel.add(lblMatrculaDoFuncionrio);
 		
 		JLabel lblNome = new JLabel("Nome funcion\u00E1rio:" + conta.getFuncionario().getNome());
-		lblNome.setBounds(25, 125, 170, 14);
+		lblNome.setBounds(25, 125, 361, 14);
 		panel.add(lblNome);
 		
 		JLabel icone = new JLabel("");
 		icone.setEnabled(false);
 		icone.setIcon(new ImageIcon(TelaDetalhesConta.class.getResource("/Icones/user.png")));
-		icone.setBounds(184, 11, 113, 83);
+		icone.setBounds(205, 11, 113, 83);
 		panel.add(icone);
 		
 		JLabel background = new JLabel("");

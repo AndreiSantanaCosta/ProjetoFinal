@@ -38,6 +38,7 @@ import javax.swing.JScrollPane;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import javax.swing.JButton;
 
 public class TelaLoginMDI extends JFrame {
 
@@ -123,11 +124,6 @@ public class TelaLoginMDI extends JFrame {
 		mntmNewMenuItem.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/icons 1/money.png")));
 		mnAes.add(mntmNewMenuItem);
 		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Analisar Solicitações");
-		mntmNewMenuItem_1.setBackground(Color.WHITE);
-		mntmNewMenuItem_1.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/icons 1/magnifier.png")));
-		mnAes.add(mntmNewMenuItem_1);
-		
 		JMenuItem mntmCadastrarFuncionrios = new JMenuItem("Cadastrar Funcion\u00E1rios");
 		mntmCadastrarFuncionrios.setBackground(Color.WHITE);
 		mntmCadastrarFuncionrios.addActionListener(new ActionListener() {
@@ -206,6 +202,19 @@ public class TelaLoginMDI extends JFrame {
 		conteudoPrincipal.add(subPanel);
 		subPanel.setLayout(null);
 		
+		JButton btnAtualizar = new JButton("");
+		btnAtualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new TelaLoginMDI(funcionario).setVisible(true);
+			}
+		});
+		btnAtualizar.setBackground(Color.WHITE);
+		btnAtualizar.setToolTipText("Atualizar Solicita\u00E7\u00F5es");
+		btnAtualizar.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/icons 1/arrow_refresh.png")));
+		btnAtualizar.setBounds(655, 9, 33, 25);
+		subPanel.add(btnAtualizar);
+		
 		JScrollPane scroll = new JScrollPane();
 		scroll.setBounds(38, 27, 615, 283);
 		subPanel.add(scroll);
@@ -228,13 +237,13 @@ public class TelaLoginMDI extends JFrame {
 		});
 		
 		JLabel background = new JLabel("");
-		background.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/bg2.jpg")));
 		background.setBounds(0, 0, 631, 334);
+		background.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/bg2.jpg")));
 		subPanel.add(background);
 		
 		JLabel background2 = new JLabel("");
-		background2.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/bg2.jpg")));
 		background2.setBounds(350, 0, 344, 334);
+		background2.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/bg2.jpg")));
 		subPanel.add(background2);
 	}
 		
