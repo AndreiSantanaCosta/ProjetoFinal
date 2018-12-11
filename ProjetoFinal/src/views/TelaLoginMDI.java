@@ -143,7 +143,7 @@ public class TelaLoginMDI extends JFrame {
 		mntmInformaes.setBackground(Color.WHITE);
 		mntmInformaes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new TelaInformacoes().setVisible(true);;
+				new TelaInformacoes(funcionario).setVisible(true);;
 			}
 		});
 		mntmInformaes.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/icons 1/application_view_list.png")));

@@ -88,6 +88,21 @@ public class TelaLoginPrincipal extends JFrame {
 		lblLogin.setBounds(112, 90, 81, 29);
 		contentPane.add(lblLogin);
 		
+		JButton button = new JButton("");
+		button.setToolTipText("Ajuda");
+		button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(null, "Problemas ao logar?\n Lembre-se sua senha foi definida pelo "
+						+ "administrador do sistema.\n Seu login e composto por seu nome sem espaçamento em junção com os 2 primeiros digitos do CPF");
+			}
+		});
+		button.setIcon(new ImageIcon(TelaLoginPrincipal.class.getResource("/icons 1/help.png")));
+		button.setForeground(Color.LIGHT_GRAY);
+		button.setFont(new Font("Arial", Font.BOLD, 14));
+		button.setBackground(Color.DARK_GRAY);
+		button.setBounds(247, 229, 33, 23);
+		contentPane.add(button);
+		
 		inputLogin = new JTextField();
 		inputLogin.setBounds(150, 120, 120, 20);
 		contentPane.add(inputLogin);
@@ -149,7 +164,7 @@ public class TelaLoginPrincipal extends JFrame {
 		btnLogin.setForeground(Color.LIGHT_GRAY);
 		btnLogin.setBackground(Color.DARK_GRAY);
 		btnLogin.setFont(new Font("Arial", Font.BOLD, 14));
-		btnLogin.setBounds(165, 231, 89, 23);
+		btnLogin.setBounds(150, 229, 89, 23);
 		contentPane.add(btnLogin);
 		
 		JLabel background = new JLabel("");

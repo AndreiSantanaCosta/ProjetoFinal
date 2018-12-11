@@ -28,8 +28,8 @@ public class TelaInformacoes extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaInformacoes frame = new TelaInformacoes();
-					frame.setVisible(true);
+					//TelaInformacoes frame = new TelaInformacoes();
+					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -40,7 +40,7 @@ public class TelaInformacoes extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaInformacoes() {
+	public TelaInformacoes(Funcionario funcionario) {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 577, 371);
 		contentPane = new JPanel();
@@ -74,23 +74,11 @@ public class TelaInformacoes extends JFrame {
 		lblDoFuncionario.setBounds(26, 210, 233, 27);
 		panel.add(lblDoFuncionario);
 		
-		Funcionario funcionario = new Funcionario();
 		JLabel label_1 = new JLabel("Nome: " + funcionario.getNome());
 		label_1.setIcon(new ImageIcon(TelaInformacoes.class.getResource("/icons/email.ico")));
 		label_1.setFont(new Font("Arial", Font.BOLD, 14));
 		label_1.setBounds(301, 100, 249, 14);
 		contentPane.add(label_1);
-		
-		JLabel label_7 = new JLabel("");
-		label_7.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) {
-				dispose();
-			}
-		});
-		label_7.setIcon(new ImageIcon(TelaInformacoes.class.getResource("/Icones/sair-menu-2.png")));
-		label_7.setBounds(529, 11, 22, 21);
-		contentPane.add(label_7);
 		
 		JLabel label_2 = new JLabel("CPF: " + funcionario.getCpf());
 		label_2.setFont(new Font("Arial", Font.BOLD, 14));
@@ -106,6 +94,17 @@ public class TelaInformacoes extends JFrame {
 		label_4.setFont(new Font("Arial", Font.BOLD, 14));
 		label_4.setBounds(301, 220, 249, 17);
 		contentPane.add(label_4);
+		
+		JLabel sair = new JLabel("");
+		sair.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				dispose();
+			}
+		});
+		sair.setIcon(new ImageIcon(TelaInformacoes.class.getResource("/Icones/sair-menu-2.png")));
+		sair.setBounds(529, 11, 22, 21);
+		contentPane.add(sair);
 		
 		JLabel label_6 = new JLabel("");
 		label_6.setIcon(new ImageIcon(TelaInformacoes.class.getResource("/bg2.jpg")));

@@ -20,6 +20,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.SwingConstants;
 
 public class TelaDetalhesConta extends JFrame {
 
@@ -50,7 +51,7 @@ public class TelaDetalhesConta extends JFrame {
 	public TelaDetalhesConta(PrestarContas conta) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 461);
+		setBounds(100, 100, 450, 472);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -100,7 +101,7 @@ public class TelaDetalhesConta extends JFrame {
 		panel.add(btnSair);
 		
 		JLabel lblMsReferncia = new JLabel("M\u00EAs Refer\u00EAncia: " + conta.getContaDoMes());
-		lblMsReferncia.setBounds(25, 264, 336, 14);
+		lblMsReferncia.setBounds(25, 249, 336, 14);
 		panel.add(lblMsReferncia);
 		
 		if(conta.getContaTipo() == 1) {
@@ -110,23 +111,23 @@ public class TelaDetalhesConta extends JFrame {
 		}
 		
 		JLabel lblTipoDeSolicitao = new JLabel("Tipo de Solicita\u00E7\u00E3o: " + tipoConta);
-		lblTipoDeSolicitao.setBounds(25, 304, 336, 14);
+		lblTipoDeSolicitao.setBounds(25, 286, 336, 14);
 		panel.add(lblTipoDeSolicitao);
 		
 		JLabel lblValorPago = new JLabel("Valor pago: " + conta.getDespesa().getDespesaValor());
-		lblValorPago.setBounds(25, 343, 336, 14);
+		lblValorPago.setBounds(25, 327, 336, 14);
 		panel.add(lblValorPago);
 	
 		JLabel lblCargo = new JLabel("Cargo: " + conta.getPerfilDescricao());
-		lblCargo.setBounds(25, 196, 336, 14);
+		lblCargo.setBounds(25, 209, 336, 14);
 		panel.add(lblCargo);
 		
 		JLabel lblMatrculaDoFuncionrio = new JLabel("Matr\u00EDcula Do Funcion\u00E1rio: " + conta.getFuncionario().getCodigoFuncionario());
-		lblMatrculaDoFuncionrio.setBounds(25, 152, 336, 14);
+		lblMatrculaDoFuncionrio.setBounds(25, 167, 336, 14);
 		panel.add(lblMatrculaDoFuncionrio);
 		
-		JLabel lblNome = new JLabel("Nome funcion\u00E1rio:" + conta.getFuncionario().getNome());
-		lblNome.setBounds(25, 125, 361, 14);
+		JLabel lblNome = new JLabel("Nome funcion\u00E1rio: " + conta.getFuncionario().getNome());
+		lblNome.setBounds(25, 127, 361, 14);
 		panel.add(lblNome);
 		
 		JLabel icone = new JLabel("");
@@ -137,7 +138,7 @@ public class TelaDetalhesConta extends JFrame {
 		
 		JLabel background = new JLabel("");
 		background.setIcon(new ImageIcon(TelaDetalhesConta.class.getResource("/bg2.jpg")));
-		background.setBounds(0, 0, 444, 436);
+		background.setBounds(0, 0, 444, 448);
 		panel.add(background);
 		this.setLocationRelativeTo(null); /*CENTRALIZA O CONTAINER*/
 	}
