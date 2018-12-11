@@ -268,13 +268,14 @@ public class TelaPrestarContas extends JFrame {
 									@Override
 									public void mouseClicked(MouseEvent arg0) {
 										String cartao = txtNumeroDoCartao.getText();
-										String contaMes = "2018-01-01";
+										JOptionPane.showMessageDialog(null, comboMesReferencia.getSelectedIndex());
+										int idMesReferencia = comboMesReferencia.getSelectedIndex() + 1;
 										int codigoFunc = funcionario.getCodigoFuncionario();
 										// Status da conta e nao aprovado
 										int status = 3;
 										// Tipo da conta e prestar conta
 										int contaTipo = 1;
-										PrestarContas conta = new PrestarContas(cartao, contaMes, status, codigoFunc, contaTipo);
+										PrestarContas conta = new PrestarContas(cartao, idMesReferencia, status, codigoFunc, contaTipo);
 										contaDAO = new contaDAO();
 										if (contaDAO.cadastrarConta(conta) == true) {
 											despesaD.inserirDespesa();

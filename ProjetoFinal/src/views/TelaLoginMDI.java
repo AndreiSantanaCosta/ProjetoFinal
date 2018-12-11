@@ -47,7 +47,7 @@ public class TelaLoginMDI extends JFrame {
 	private Object[][] FuncionarosContas;
 	private contaDAO conta;
 	int contador;
-	private String[] colunas = {"Nome do funcionario", "Matricula do Funcionário", "Cargo", "Tipo da Conta", "Valor", "Status"};
+	private String[] colunas = {"Conta Id","Nome do funcionario", "Matricula do Funcionário", "Cargo", "Tipo da Conta", "Valor", "Status"};
 	private String[] colunasFunContas = {"Código", "Tipo de Conta", "Mês", "Valor", "Status"};
 	/**
 	 * Launch the application.
@@ -210,13 +210,22 @@ public class TelaLoginMDI extends JFrame {
 		scroll.setBounds(38, 27, 615, 283);
 		subPanel.add(scroll);
 		
-		criaJTable();
+		criaJTable(funcionario);
 		
 		tabela.setEnabled(false);
 		tabela.setFont(new Font("Arial", Font.PLAIN, 13));
 		scroll.setViewportView(tabela);
 		tabela.setForeground(Color.WHITE);
 		tabela.setBackground(Color.DARK_GRAY);
+		tabela.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseClicked(java.awt.event.MouseEvent e) {
+				int row =  tabela.rowAtPoint(e.getPoint());
+				int idConta = Integer.parseInt(tabela.getValueAt(row, 0).toString());
+				PrestarContas contaDetalhe = conta.getDadosContaById(idConta);
+				new TelaDetalhesConta(contaDetalhe).setVisible(true);
+			}
+
+		});
 		
 		JLabel background = new JLabel("");
 		background.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/bg2.jpg")));
@@ -229,7 +238,7 @@ public class TelaLoginMDI extends JFrame {
 		subPanel.add(background2);
 	}
 		
-	public void criaJTable() {
+	public void criaJTable(Funcionario funcionario) {
 		if(funcionario.getPerfilFuncionario() == 1) {
 			carregarContas();
 		}else if (funcionario.getPerfilFuncionario() == 2) {
@@ -247,18 +256,18 @@ public class TelaLoginMDI extends JFrame {
 		PrestarContas contaDetalhe;
 		for(int i = 0; i < listaContas.size(); i++) {
 			contaDetalhe = listaContas.get(i);
-		
-			contas[i][0] = contaDetalhe.getFuncionario().getCodigoFuncionario() +"";
-			contas[i][1] = contaDetalhe.getFuncionario().getNome();
-			contas[i][2] = contaDetalhe.getPerfilDescricao();
+			contas[i][0] = contaDetalhe.getCodigoConta() + "";
+			contas[i][1] = contaDetalhe.getFuncionario().getCodigoFuncionario() +"";
+			contas[i][2] = contaDetalhe.getFuncionario().getNome();
+			contas[i][3] = contaDetalhe.getPerfilDescricao();
 			if(contaDetalhe.getContaTipo() == 1) {
 				tipoconta = "Prestação de Conta";
 			}else {
 				tipoconta = "Reembolso";
 			}
-			contas[i][3] = tipoconta;
-			contas[i][4] = contaDetalhe.getDespesa().getDespesaValor()+"";
-			contas[i][5] = contaDetalhe.getStatusDescricao();
+			contas[i][4] = tipoconta;
+			contas[i][5] = contaDetalhe.getDespesa().getDespesaValor()+"";
+			contas[i][6] = contaDetalhe.getStatusDescricao();
 			
 		}
 		tabela = new JTable(contas, colunas);

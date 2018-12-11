@@ -11,12 +11,13 @@ public class PrestarContas {
 	private Funcionario funcionario;
 	private ContaDespesa despesa;
 	private String perfilDescricao, statusDescricao;
+	private int idMesReferencia;
 	
-	public PrestarContas(String cartao, String contaDoMes, int status,
+	public PrestarContas(String cartao, int IdMes, int status,
 			int codigoFuncionario, int contaTipo) {
 		super();
 		this.cartao = cartao;
-		this.contaDoMes = contaDoMes;
+		this.idMesReferencia = IdMes;
 		this.status = status;
 		this.codigoFuncionario = codigoFuncionario;
 		this.contaTipo = contaTipo;
@@ -46,6 +47,14 @@ public class PrestarContas {
 
 	public void setDespesa(ContaDespesa despesa) {
 		this.despesa = despesa;
+	}
+	
+	public int getIdMesReferencia() {
+		return idMesReferencia;
+	}
+
+	public void setIdMesReferencia(int idMesReferencia) {
+		this.idMesReferencia = idMesReferencia;
 	}
 
 	public String getPerfilDescricao() {

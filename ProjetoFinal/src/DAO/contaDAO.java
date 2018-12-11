@@ -22,13 +22,13 @@ public class contaDAO {
 		Conexao conection = new Conexao();
 		
 		//=> Query de INSERT
-		String sql = "INSERT INTO presta_conta (conta_cartao, conta_mes, fun_id, status_id, conta_tipo) "
+		String sql = "INSERT INTO presta_conta (conta_cartao, idmes_referencia, fun_id, status_id, conta_tipo) "
 			+ "VALUES(?,?,?,?,?)";
 		try {
 			Connection con = conection.getConexaoMYSQL();
 			PreparedStatement stmt = con.prepareStatement(sql);
 			stmt.setString(1, conta.getCartao());
-			stmt.setString(2, "2018-01-01");
+			stmt.setInt(2, conta.getIdMesReferencia());
 			stmt.setInt(3, conta.getCodigoFuncionario());
 			stmt.setInt(4, conta.getStatus());
 			stmt.setInt(5, conta.getContaTipo());
@@ -60,12 +60,14 @@ public class contaDAO {
 		Funcionario func = null;
 		ContaDespesa despesa = null;
 		
-		String sql = "select f.fun_id, f.fun_nome,Fp.perfil_descricao, Sc.status_descricao, sum(Cd.despesa_valor) as Valor, Pc.conta_tipo" + 
+		String sql = "select f.fun_id, f.fun_nome,Fp.perfil_descricao, Sc.status_descricao, sum(Cd.despesa_valor) as Valor, Pc.conta_tipo, Pc.conta_id" + 
 				"	from presta_conta Pc" + 
 				"	inner join status_conta Sc on Sc.status_id = Pc.status_id" + 
 				"	inner join funcionario f on f.fun_id = Pc.fun_id" + 
 				"	inner join funcionario_perfil Fp on Fp.perfil_id = f.fun_perfil" + 
-				"	inner join conta_despesa Cd on Cd.despesa_conta_id = Pc.conta_id" + 
+				"	inner join conta_despesa Cd on Cd.despesa_conta_id = Pc.conta_id" +
+				"   inner join mes_referencia Mf on Mf.id = Pc.idmes_referencia" +
+				"	where Pc.status_id = 3	" +
 				"	group by (Pc.conta_id);";
 			
 		try {
@@ -81,6 +83,7 @@ public class contaDAO {
 				despesa.setDespesaValor(rs.getDouble(5));
 				int contaTipo = rs.getInt(6);
 				conta = new PrestarContas(func, rs.getString(3), contaTipo ,rs.getString(4), despesa);
+				conta.setCodigoConta(rs.getInt(7));
 				saveContaArrayList(conta);
 			}
 		}catch(SQLException e) {
@@ -101,13 +104,13 @@ public class contaDAO {
 		Conexao conection = new Conexao();
 		PrestarContas conta;
 		PreparedStatement stmt = null;
-		Funcionario func = null;
 		ContaDespesa despesa = null;
 		
-		String sql = "select Pc.conta_id, Pc.conta_mes, Sc.status_descricao, sum(Cd.despesa_valor) as Valor, Pc.conta_tipo" + 
+		String sql = "select Pc.conta_id, Mf.descricao, Sc.status_descricao, sum(Cd.despesa_valor) as Valor, Pc.conta_tipo" + 
 				"					from presta_conta Pc \r\n" + 
 				"					inner join status_conta Sc on Sc.status_id = Pc.status_id" + 
-				"					inner join conta_despesa Cd on Cd.despesa_conta_id = Pc.conta_id" + 
+				"					inner join conta_despesa Cd on Cd.despesa_conta_id = Pc.conta_id" +
+				"					left join mes_referencia Mf on Mf.id = Pc.idmes_referencia" + 
 				"				where Pc.fun_id = ?" + 
 				"				group by (Pc.conta_id)";
 			
@@ -142,6 +145,84 @@ public class contaDAO {
 		}
 		
 		return selectJtable;
+	}
+	
+	public PrestarContas getDadosContaById(int idConta) {
+		ResultSet rs = null;
+		Conexao conection = new Conexao();
+		PrestarContas conta = null;
+		PreparedStatement stmt = null;
+		Funcionario func = null;
+		ContaDespesa despesa = null;
+		
+		String sql = "select f.fun_id, f.fun_nome,Fp.perfil_descricao, Sc.status_descricao, sum(Cd.despesa_valor) as Valor, Pc.conta_tipo, "
+				+ "	Mf.descricao, Pc.conta_id" + 
+				"	from presta_conta Pc" + 
+				"	inner join status_conta Sc on Sc.status_id = Pc.status_id" + 
+				"	inner join funcionario f on f.fun_id = Pc.fun_id" + 
+				"	inner join funcionario_perfil Fp on Fp.perfil_id = f.fun_perfil" + 
+				"	inner join conta_despesa Cd on Cd.despesa_conta_id = Pc.conta_id" +
+				"   right join mes_referencia Mf on Mf.id = Pc.idmes_referencia" + 
+				"	where Pc.conta_id = ?" + 
+				"	group by (Pc.conta_id);";
+			
+		try {
+			Connection con = conection.getConexaoMYSQL();
+			stmt = con.prepareStatement(sql);
+			stmt.setInt(1, idConta);
+			rs = stmt.executeQuery();
+			while (rs.next()) {
+				func = new Funcionario();
+				func.setCodigoFuncionario(rs.getInt(1));
+				func.setNome(rs.getString(2));
+				
+				despesa = new  ContaDespesa();
+				despesa.setDespesaValor(rs.getDouble(5));
+				int contaTipo = rs.getInt(6);
+				conta = new PrestarContas(func, rs.getString(3), contaTipo ,rs.getString(4), despesa);
+				conta.setContaDoMes(rs.getString(7));
+				conta.setCodigoConta(rs.getInt(8));
+			}
+		}catch(SQLException e) {
+			
+			System.out.println(e);
+			
+		}catch (Exception e) {
+			System.out.println(e);
+		}finally {
+			conection.closeConexaoMYSQL();
+		}
+		
+		return conta;
+	}
+	
+	public String setAlteracaoStatusConta(int contaId, int status) {
+		ResultSet rs = null;
+		Conexao conection = new Conexao();
+		PrestarContas conta;
+		PreparedStatement stmt = null;
+		Funcionario func = null;
+		ContaDespesa despesa = null;
+		
+		String sql = "UPDATE presta_conta SET status_id = ? WHERE conta_id = ?";
+			
+		try {
+			Connection con = conection.getConexaoMYSQL();
+			stmt = con.prepareStatement(sql);
+			stmt.setInt(1, status);
+			stmt.setInt(2, contaId);
+			stmt.execute();
+			con.close();
+			return "Alteração realizada com sucesso.";
+		}catch(SQLException e) {
+			System.out.println(e);
+			return "Erro ao realizar operação. Conta-te o administrador do sistema";
+		}catch (Exception e) {
+			System.out.println(e);
+			return "Erro ao realizar operação. Conta-te o administrador do sistema.";
+		}finally {
+			conection.closeConexaoMYSQL();
+		}
 	}
 	
 	
