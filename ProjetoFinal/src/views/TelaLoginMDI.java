@@ -257,8 +257,8 @@ public class TelaLoginMDI extends JFrame {
 		for(int i = 0; i < listaContas.size(); i++) {
 			contaDetalhe = listaContas.get(i);
 			contas[i][0] = contaDetalhe.getCodigoConta() + "";
-			contas[i][1] = contaDetalhe.getFuncionario().getCodigoFuncionario() +"";
-			contas[i][2] = contaDetalhe.getFuncionario().getNome();
+			contas[i][2] = contaDetalhe.getFuncionario().getCodigoFuncionario() +"";
+			contas[i][1] = contaDetalhe.getFuncionario().getNome();
 			contas[i][3] = contaDetalhe.getPerfilDescricao();
 			if(contaDetalhe.getContaTipo() == 1) {
 				tipoconta = "Prestação de Conta";

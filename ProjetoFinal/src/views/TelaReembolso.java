@@ -137,14 +137,13 @@ public class TelaReembolso extends JFrame {
 		label_5.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				String contaMes = "2018-01-01";
+				int idMesReferencia = comboMesReferencia.getSelectedIndex() + 1;
 				int codigoFunc = funcionario.getCodigoFuncionario();
 				// Status da conta e nao aprovado
 				int status = 3;
 				// Tipo da conta e prestar conta
 				int contaTipo = 2;
-				JOptionPane.showMessageDialog(null, codigoFunc);
-				PrestarContas conta = new PrestarContas("",contaMes, status, codigoFunc, contaTipo);
+				PrestarContas conta = new PrestarContas("",idMesReferencia, status, codigoFunc, contaTipo);
 				contaDAO = new contaDAO();
 				if (contaDAO.cadastrarConta(conta) == true) {
 					despesaD.inserirDespesa();

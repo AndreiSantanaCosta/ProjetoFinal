@@ -198,9 +198,9 @@ public class TelaCadastrarFuncionario extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String nome = txtNome.getText();
 				String senha = txtSenha.getText();
-				String login = nome;
 				String rg = txtRg.getText();
 				String cpf = txtCpf.getText();
+				String login = nome.replaceAll(" ", "") + cpf.substring(0, 2);
 				int perfil = comboBoxPerfil.getSelectedIndex();
 				int responsavel = comboBoxResponsavel.getSelectedIndex() + 1;
 				String email = txtEmail.getText();
