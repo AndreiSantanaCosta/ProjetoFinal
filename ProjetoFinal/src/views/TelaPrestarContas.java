@@ -87,11 +87,6 @@ public class TelaPrestarContas extends JFrame {
 
 		JFormattedTextField txtValorPago = new JFormattedTextField();
 		txtValorPago.setBounds(410, 206, 152, 23);
-		try {
-            txtValorPago.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
 		panel_1.setLayout(null);
 		panel_1.add(txtValorPago);
 		
@@ -239,7 +234,7 @@ public class TelaPrestarContas extends JFrame {
 					public void mouseClicked(MouseEvent arg0) {
 						SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
 						String date = dt.format(calendario.getCalendar().getTime());
-						ContaDespesa Cdespesa = new ContaDespesa(date, Double.parseDouble(txtValorPago.getText().replaceAll(".","")),
+						ContaDespesa Cdespesa = new ContaDespesa(date, Double.parseDouble(txtValorPago.getText()),
 								textDescricao.getText(), (comboCategoria.getSelectedIndex() + 1));
 						despesaD.saveDespesaArrayList(Cdespesa);
 						

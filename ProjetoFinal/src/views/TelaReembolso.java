@@ -197,11 +197,6 @@ public class TelaReembolso extends JFrame {
 		
 		JFormattedTextField txtValorPago = new JFormattedTextField();
 		txtValorPago.setBounds(235, 186, 125, 23);
-		try {
-            txtValorPago.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###.###.###")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
 		background.add(txtValorPago);
 		
 		JPanel panel = new JPanel();
@@ -223,7 +218,7 @@ public class TelaReembolso extends JFrame {
 			public void mouseClicked(MouseEvent arg0) {
 				SimpleDateFormat dt = new SimpleDateFormat("yyyy-MM-dd");
 				String date = dt.format(calendario.getCalendar().getTime());
-				ContaDespesa Cdespesa = new ContaDespesa(date, Double.parseDouble(txtValorPago.getText().replace(".","")),
+				ContaDespesa Cdespesa = new ContaDespesa(date, Double.parseDouble(txtValorPago.getText()),
 						txtDescricao.getText(), (comboCategoria.getSelectedIndex() + 1));
 				despesaD.saveDespesaArrayList(Cdespesa);
 				

@@ -17,6 +17,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+
 import java.awt.Color;
 import java.awt.Desktop;
 import java.awt.event.ActionListener;
@@ -123,10 +125,6 @@ public class TelaLoginMDI extends JFrame {
 		mntmNewMenuItem.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/icons 1/money.png")));
 		mnAes.add(mntmNewMenuItem);
 		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Analisar Solicitações");
-		mntmNewMenuItem_1.setBackground(Color.WHITE);
-		mntmNewMenuItem_1.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/icons 1/magnifier.png")));
-		mnAes.add(mntmNewMenuItem_1);
 		
 		JMenuItem mntmCadastrarFuncionrios = new JMenuItem("Cadastrar Funcion\u00E1rios");
 		mntmCadastrarFuncionrios.setBackground(Color.WHITE);
@@ -205,6 +203,19 @@ public class TelaLoginMDI extends JFrame {
 		subPanel.setBounds(0, 116, 694, 334);
 		conteudoPrincipal.add(subPanel);
 		subPanel.setLayout(null);
+		
+		JButton btnAtualizar = new JButton("");
+		btnAtualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				new TelaLoginMDI(funcionario).setVisible(true);
+			}
+		});
+		btnAtualizar.setBackground(Color.WHITE);
+		btnAtualizar.setToolTipText("Atualizar Solicita\u00E7\u00F5es");
+		btnAtualizar.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/icons 1/arrow_refresh.png")));
+		btnAtualizar.setBounds(655, 9, 33, 25);
+		subPanel.add(btnAtualizar);
 		
 		JScrollPane scroll = new JScrollPane();
 		scroll.setBounds(38, 27, 615, 283);
