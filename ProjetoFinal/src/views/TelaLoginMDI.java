@@ -130,7 +130,7 @@ public class TelaLoginMDI extends JFrame {
 			mntmCadastrarFuncionrios.setBackground(Color.WHITE);
 			mntmCadastrarFuncionrios.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					new TelaCadastrarFuncionario().setVisible(true);
+					new TelaCadastrarFuncionario(funcionario).setVisible(true);
 				}
 			});
 			mntmCadastrarFuncionrios.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/icons 1/vcard_add.png")));
@@ -254,9 +254,9 @@ public class TelaLoginMDI extends JFrame {
 	}
 		
 	public void criaJTable(Funcionario funcionario) {
-		if(funcionario.getPerfilFuncionario() == 1) {
+		if(funcionario.getPerfilFuncionario() == 1 || funcionario.getPerfilFuncionario() == 2) {
 			carregarContas();
-		}else if (funcionario.getPerfilFuncionario() == 2 || funcionario.getPerfilFuncionario() == 3) {
+		}else if (funcionario.getPerfilFuncionario() == 3) {
 			carregarContasByFuncionarioId(funcionario.getCodigoFuncionario());
 		}
 	}

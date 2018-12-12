@@ -42,8 +42,8 @@ public class TelaCadastrarFuncionario extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaCadastrarFuncionario frame = new TelaCadastrarFuncionario();
-					frame.setVisible(true);
+					//TelaCadastrarFuncionario frame = new TelaCadastrarFuncionario();
+					//frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -54,7 +54,7 @@ public class TelaCadastrarFuncionario extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaCadastrarFuncionario() {
+	public TelaCadastrarFuncionario(Funcionario fun) {
 		setTitle("Cadastro");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -191,10 +191,9 @@ public class TelaCadastrarFuncionario extends JFrame {
 				String cpf = txtCpf.getText();
 				String login = nome.replaceAll(" ", "") + cpf.substring(0, 2);
 				int perfil = comboBoxPerfil.getSelectedIndex() + 1;
-				int responsavel = comboBoxResponsavel.getSelectedIndex() + 1;
 				String email = txtEmail.getText();
 				
-				Funcionario funcionario = new Funcionario(nome, senha, email, login, rg, cpf, perfil, responsavel);
+				Funcionario funcionario = new Funcionario(nome, senha, email, login, rg, cpf, perfil, fun.getCodigoFuncionario());
 				funcionarioD = new funcionarioDAO();
 				funcionarioD.insertFuncionario(funcionario);
 				
