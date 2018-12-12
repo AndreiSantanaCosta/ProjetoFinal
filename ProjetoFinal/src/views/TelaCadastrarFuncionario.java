@@ -110,42 +110,31 @@ public class TelaCadastrarFuncionario extends JFrame {
 		lblPerfilFuncionrio.setBounds(20, 154, 110, 14);
 		contentPane.add(lblPerfilFuncionrio);
 		
-		JLabel lblResponsavel = new JLabel("Responsavel:");
-		lblResponsavel.setFont(new Font("Arial", Font.PLAIN, 11));
-		lblResponsavel.setBounds(20, 202, 86, 14);
-		contentPane.add(lblResponsavel);
-		
 		JLabel lblEmail = new JLabel("E-MAIL:");
 		lblEmail.setFont(new Font("Arial", Font.BOLD, 12));
-		lblEmail.setBounds(20, 250, 55, 14);
+		lblEmail.setBounds(20, 215, 55, 14);
 		contentPane.add(lblEmail);
 		
 		txtEmail = new JTextField();
 		txtEmail.setColumns(10);
-		txtEmail.setBounds(30, 267, 150, 20);
+		txtEmail.setBounds(30, 242, 150, 20);
 		contentPane.add(txtEmail);
 		
 		JLabel lblSenha = new JLabel("SENHA:");
 		lblSenha.setFont(new Font("Arial", Font.BOLD, 12));
-		lblSenha.setBounds(20, 298, 55, 14);
+		lblSenha.setBounds(20, 275, 55, 14);
 		contentPane.add(lblSenha);
 		
 		txtSenha = new JPasswordField();
 		txtSenha.setColumns(10);
-		txtSenha.setBounds(30, 315, 100, 20);
+		txtSenha.setBounds(30, 302, 100, 20);
 		contentPane.add(txtSenha);
 		
 		JComboBox comboBoxPerfil = new JComboBox();
 		comboBoxPerfil.setBackground(Color.WHITE);
-		comboBoxPerfil.setModel(new DefaultComboBoxModel(new String[] {"Gerente Chefe", "Gestor", "Funcion\u00E1rio"}));
+		comboBoxPerfil.setModel(new DefaultComboBoxModel(new String[] {"Administrador", "Chefe", "Funcion\u00E1rio"}));
 		comboBoxPerfil.setBounds(30, 171, 150, 20);
 		contentPane.add(comboBoxPerfil);
-		
-		JComboBox comboBoxResponsavel = new JComboBox();
-		comboBoxResponsavel.setBackground(Color.WHITE);
-		comboBoxResponsavel.setModel(new DefaultComboBoxModel(new String[] {"1", "2"}));
-		comboBoxResponsavel.setBounds(30, 219, 150, 20);
-		contentPane.add(comboBoxResponsavel);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.DARK_GRAY);

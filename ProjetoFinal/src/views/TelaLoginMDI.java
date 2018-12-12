@@ -125,16 +125,18 @@ public class TelaLoginMDI extends JFrame {
 		mntmNewMenuItem.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/icons 1/money.png")));
 		mnAes.add(mntmNewMenuItem);
 		
-		
-		JMenuItem mntmCadastrarFuncionrios = new JMenuItem("Cadastrar Funcion\u00E1rios");
-		mntmCadastrarFuncionrios.setBackground(Color.WHITE);
-		mntmCadastrarFuncionrios.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				new TelaCadastrarFuncionario().setVisible(true);
-			}
-		});
-		mntmCadastrarFuncionrios.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/icons 1/vcard_add.png")));
-		mnAes.add(mntmCadastrarFuncionrios);
+		if(funcionario.getPerfilFuncionario() == 1 ||funcionario.getPerfilFuncionario() == 2 ) {
+			JMenuItem mntmCadastrarFuncionrios = new JMenuItem("Cadastrar Funcion\u00E1rios");
+			mntmCadastrarFuncionrios.setBackground(Color.WHITE);
+			mntmCadastrarFuncionrios.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					new TelaCadastrarFuncionario().setVisible(true);
+				}
+			});
+			mntmCadastrarFuncionrios.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/icons 1/vcard_add.png")));
+			mnAes.add(mntmCadastrarFuncionrios);
+			
+		}
 		
 		JMenu mnUsurio = new JMenu("Usu\u00E1rio");
 		mnUsurio.setIcon(new ImageIcon(TelaLoginMDI.class.getResource("/icons 1/user.png")));
@@ -233,7 +235,9 @@ public class TelaLoginMDI extends JFrame {
 				int row =  tabela.rowAtPoint(e.getPoint());
 				int idConta = Integer.parseInt(tabela.getValueAt(row, 0).toString());
 				PrestarContas contaDetalhe = conta.getDadosContaById(idConta);
-				new TelaDetalhesConta(contaDetalhe).setVisible(true);
+				if(funcionario.getPerfilFuncionario() == 1  ||funcionario.getPerfilFuncionario() == 2 ) {
+					new TelaDetalhesConta(contaDetalhe).setVisible(true);
+				}
 			}
 
 		});

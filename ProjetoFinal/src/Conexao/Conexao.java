@@ -18,7 +18,7 @@ public class Conexao {
 		String mydatabase = "sistemacorporativo";
 		String porta = "3306";
 		String username = "root";  
-		String password = "baguvix1"; 
+		String password = "toor"; 
 		String url = "jdbc:mysql://" + serverName +":" + porta + "/" + mydatabase+ "?useTimezone=true&serverTimezone=UTC&useSSL=false";
 			
 		conn = DriverManager.getConnection(url, username, password);	
